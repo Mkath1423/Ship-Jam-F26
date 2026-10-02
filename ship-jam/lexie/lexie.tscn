@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cwmts2y63knh"]
+
+[ext_resource type="Texture2D" uid="uid://fei1tbayus41" path="res://lexie/space-bg.jpg" id="1_cq8bq"]
+[ext_resource type="Texture2D" uid="uid://yfdrvpdjrlwl" path="res://lexie/purple-ship.png" id="2_qjned"]
+
+[node name="Main" type="Node2D" unique_id=203743139]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=367381247]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=133749328]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cq8bq")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=997787331]
+
+[node name="player_ship" type="Node2D" parent="CanvasLayer2" unique_id=623867342]
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer2/player_ship" unique_id=567666731]
+position = Vector2(478, 366)
+texture = ExtResource("2_qjned")

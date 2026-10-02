@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dub1888olcx2h"]
+
+[ext_resource type="Script" uid="uid://6kebfld0lrdi" path="res://lexie/player_ship.gd" id="1_cplq0"]
+[ext_resource type="Texture2D" uid="uid://yfdrvpdjrlwl" path="res://lexie/purple-ship.png" id="2_upp5r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
+radius = 48.010414
+
+[node name="player_ship" type="CharacterBody2D" unique_id=1037649546]
+script = ExtResource("1_cplq0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1536780458]
+texture = ExtResource("2_upp5r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=530713084]
+shape = SubResource("CircleShape2D_vqkdg")
