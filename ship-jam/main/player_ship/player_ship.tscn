@@ -14,3 +14,9 @@ texture = ExtResource("2_upp5r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=530713084]
 shape = SubResource("CircleShape2D_vqkdg")
+
+[node name="ShotTimer" type="Timer" parent="." unique_id=1321834186]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]

@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var break_speed_decay : float = 0.5
 
 @export var bullet_manager : Node
+var gun_on_cooldown : bool = false
 
 var look_at = Vector2.LEFT
 
@@ -40,8 +41,10 @@ func _physics_process(delta: float) -> void:
 	var v_before = velocity
 	move_and_slide()
 	
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and not gun_on_cooldown:
 		bullet_manager.spawn_bullet(position, 3000, $Sprite2D.rotation)
+		$ShotTimer.start()
+		gun_on_cooldown = true
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -51,3 +54,7 @@ func _physics_process(delta: float) -> void:
 		
 		else:
 			print("unhandled collision with ", collision.get_collider().name)
+
+
+func _on_shot_timer_timeout() -> void:
+	gun_on_cooldown = false
