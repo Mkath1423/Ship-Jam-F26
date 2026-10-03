@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name PlayerShip extends CharacterBody2D
 
 @export var boost_acceleration : float
 @export var nudge_acceleration : float
@@ -57,8 +57,9 @@ func _physics_process(delta: float) -> void:
 		if collider is RigidBody2D:
 			collider.apply_impulse(-velocity + v_before, collider.position)
 		
-		else:
-			print("unhandled collision with ", collision.get_collider().name)
+		elif collider is EnemyShip:
+			resourceManager.playerHealth -= 10
+			print(resourceManager.playerHealth)
 
 func _on_shot_timer_timeout() -> void:
 	gun_on_cooldown = false
@@ -66,3 +67,7 @@ func _on_shot_timer_timeout() -> void:
 func hit_by_bullet(bullet):
 	if bullet.team == teams.team.Enemy:
 		resourceManager.playerHealth -= 10
+
+#func _on_hitbox_body_entered(body: Node2D) -> void:
+#	if body is EnemyShip:
+#		resourceManager.playerHealth -= 10

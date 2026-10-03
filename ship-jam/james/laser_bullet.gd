@@ -15,7 +15,6 @@ func _process(delta: float) -> void:
 	position += Vector2(sin(rotation), -cos(rotation)) * speed * delta
 
 func _on_body_entered(body: Node2D) -> void:
-	print("ENTEREDDD")
 	if body.has_method("hit_by_bullet"):
 		body.hit_by_bullet(self)
 		if "team" not in body or self.team != body.team:

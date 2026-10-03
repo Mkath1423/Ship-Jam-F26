@@ -13,7 +13,6 @@ class_name _EnemyController extends Node
 
 class EnemyInfo:
 	var node : EnemyShip
-	var is_dying : bool
 	var target_velocity : Vector2
 	var update_target_vel : float
 
@@ -34,7 +33,7 @@ func _awaken_enemy(position : Vector2):
 	world.add_child(node)
 	
 	info.node = node
-	info.is_dying = false
+	info.node.is_dying = false
 	
 	return info
 
@@ -106,7 +105,7 @@ func _process(delta: float) -> void:
 	for i in range(live_enemies.size() - 1, -1, -1):
 		var info = live_enemies[i]
 		
-		if info.is_dying:
+		if info.node.is_dying:
 			live_enemies.remove_at(i)
 			_kill_one(info)
 			
@@ -165,6 +164,9 @@ func _process(delta: float) -> void:
 			if collider is RigidBody2D:
 				info.node.velocity *= 0.1
 				collider.apply_central_force(v_before - info.node.velocity)
+			
+			elif collider is PlayerShip:
+				info.node.is_dying = true
 			
 			elif collider is EnemyShip:
 				var k = collision.get_normal()

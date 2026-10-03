@@ -3,7 +3,7 @@ class_name EnemyShip extends CharacterBody2D
 @export var max_acceleration : float = 500
 @export var max_speed : float = 1000
 
-var dead : bool = false
+var is_dying : bool = false
 
 const teams = preload("res://main/teams.gd")
 var team : teams.team = teams.team.Enemy
@@ -13,4 +13,11 @@ func set_state(rotation):
 
 func hit_by_bullet(bullet):
 	if bullet.team == teams.team.Player:
-		dead = true
+		is_dying = true
+		print(true)
+
+
+#func _on_hitbox_body_entered(body: Node2D) -> void:
+#	if body is not EnemyShip:
+#		dead = true
+#		print("I DIED")
