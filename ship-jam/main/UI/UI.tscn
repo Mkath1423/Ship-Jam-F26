@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bblfx6md03jbv"]
+
+[ext_resource type="Script" uid="uid://3kwvj50ewo7y" path="res://main/UI/ui.gd" id="1_gr7po"]
+[ext_resource type="Texture2D" uid="uid://cgbx1h70abklq" path="res://assets/image.webp" id="1_obgjq"]
+
+[node name="Ui" type="CanvasLayer" unique_id=1415882682]
+script = ExtResource("1_gr7po")
+
+[node name="StaticUI" type="Sprite2D" parent="." unique_id=455796238]
+position = Vector2(581, 311)
+texture = ExtResource("1_obgjq")
