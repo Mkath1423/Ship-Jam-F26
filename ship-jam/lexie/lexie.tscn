@@ -5,8 +5,10 @@
 [ext_resource type="Script" uid="uid://ktdfb8idap2" path="res://lexie/rigid_body_2d.gd" id="2_ykd4u"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="3_1ror0"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_40pup"]
-[ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="5_i73uh"]
-[ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="5_mu62u"]
+[ext_resource type="PackedScene" uid="uid://cba6a2xvhuisy" path="res://lexie/level/chunks/test_chunk_1000.tscn" id="6_hgeq3"]
+[ext_resource type="Script" uid="uid://bfrafaw0h17rm" path="res://lexie/level/chunk_manager.gd" id="6_jmjeg"]
+[ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="6_mplub"]
+[ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="7_hgeq3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ykd4u"]
 radius = 81.3019
@@ -29,10 +31,21 @@ follow_viewport_enabled = true
 
 [node name="world" type="Node2D" parent="CanvasLayer2" unique_id=1357831140]
 
+[node name="ChunkManager" type="Node2D" parent="CanvasLayer2/world" unique_id=1581835725 node_paths=PackedStringArray("player")]
+physics_interpolation_mode = 2
+script = ExtResource("6_jmjeg")
+player = NodePath("../player_ship")
+test_check = ExtResource("6_hgeq3")
+chunk_dims = Vector2(3000, 3000)
+chunk_load_distance = Vector2i(2, 2)
+world_dimentions = Vector2i(5, 5)
+
 [node name="RigidBody2D" type="RigidBody2D" parent="CanvasLayer2/world" unique_id=75935433]
+visible = false
 position = Vector2(0, -3)
 mass = 10.0
 gravity_scale = 0.0
+custom_integrator = true
 angular_damp = 1.0
 script = ExtResource("2_ykd4u")
 
@@ -42,13 +55,14 @@ texture = ExtResource("2_mu62u")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/world/RigidBody2D" unique_id=1166989056]
 shape = SubResource("CircleShape2D_ykd4u")
 
-[node name="player_ship" parent="CanvasLayer2/world" unique_id=1037649546 instance=ExtResource("3_1ror0")]
+[node name="player_ship" parent="CanvasLayer2/world" unique_id=1037649546 node_paths=PackedStringArray("bullet_manager") instance=ExtResource("3_1ror0")]
 position = Vector2(539, 326)
 boost_acceleration = 1000.0
 nudge_acceleration = 300.0
 max_speed = 1000.0
 max_speed_decay = 0.001
 break_speed_decay = 0.95
+bullet_manager = NodePath("../../Node2")
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer2/world/player_ship" unique_id=1146351980]
 zoom = Vector2(0.6, 0.6)
@@ -68,14 +82,9 @@ lower_bound_speed = 300.0
 upper_bound_speed = 1000.0
 gamma = 1.5
 
-[node name="Node" type="Node" parent="CanvasLayer2" unique_id=267404729 node_paths=PackedStringArray("world", "player")]
-script = ExtResource("5_i73uh")
-basic_enemy_scene = ExtResource("5_mu62u")
+[node name="Node2" type="Node" parent="CanvasLayer2" unique_id=853995250 node_paths=PackedStringArray("world")]
+script = ExtResource("6_mplub")
+bullet = ExtResource("7_hgeq3")
 world = NodePath("../world")
-player = NodePath("../world/player_ship")
-target_factor = 5.0
-seperation_factor = 10.0
-alignment_factor = 3.0
-cohesion_factor = 1.0
 
 [connection signal="body_entered" from="CanvasLayer2/world/RigidBody2D" to="CanvasLayer2/world/RigidBody2D" method="_on_body_entered"]
