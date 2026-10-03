@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://bhsfevmk7ruxt"]
 
-[ext_resource type="Texture2D" uid="uid://fei1tbayus41" path="res://lexie/space-bg.jpg" id="1_53q0u"]
 [ext_resource type="Script" uid="uid://c4p6p2kixkbj7" path="res://main/main.gd" id="1_bsumw"]
 [ext_resource type="PackedScene" uid="uid://dqr2qk0nhtxwq" path="res://james/railgun_bullet.tscn" id="2_0i4oc"]
 [ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="2_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="2_pjrb6"]
 [ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_xwkvk"]
+[ext_resource type="Texture2D" uid="uid://cgbx1h70abklq" path="res://assets/image.webp" id="3_fwcvl"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_c651c"]
 [ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="5_3wy1v"]
 [ext_resource type="Resource" uid="uid://c1k77bq5y0wvi" path="res://james/ResourceManager.tres" id="6_grrlh"]
 [ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="7_67ri8"]
 [ext_resource type="Script" uid="uid://d28v0s2l3l1i2" path="res://main/obstacles/asteroid_like.gd" id="7_fwcvl"]
 [ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="8_grrlh"]
+[ext_resource type="Texture2D" uid="uid://c0mbhb0g3oqh6" path="res://assets/Sprite - Aster3.png" id="8_na0o7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
 radius = 81.3019
@@ -32,21 +33,13 @@ offset_right = 100.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_53q0u")
+texture = ExtResource("3_fwcvl")
 
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=997787331]
 visible = false
 follow_viewport_enabled = true
 
 [node name="world" type="Node2D" parent="GameLayer" unique_id=647259127]
-
-[node name="RailgunBullet" parent="GameLayer/world" unique_id=75877084 instance=ExtResource("2_0i4oc")]
-
-[node name="BulletManager" type="Node" parent="GameLayer/world" unique_id=1260691058 node_paths=PackedStringArray("world")]
-script = ExtResource("2_kfbq2")
-bullet = ExtResource("5_3wy1v")
-railgun_beam = ExtResource("2_0i4oc")
-world = NodePath("..")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="GameLayer/world" unique_id=123223667]
 position = Vector2(286, 132)
@@ -56,7 +49,9 @@ angular_damp = 1.0
 script = ExtResource("7_fwcvl")
 
 [node name="Icon" type="Sprite2D" parent="GameLayer/world/RigidBody2D" unique_id=1804569158]
-texture = ExtResource("2_xwkvk")
+position = Vector2(-8.999998, -76.99999)
+scale = Vector2(8.6484375, 8.6484375)
+texture = ExtResource("8_na0o7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameLayer/world/RigidBody2D" unique_id=895099602]
 shape = SubResource("CircleShape2D_vqkdg")
@@ -90,8 +85,11 @@ lower_bound_speed = 300.0
 upper_bound_speed = 1000.0
 gamma = 1.5
 
-[node name="LaserBullet" parent="GameLayer/world" unique_id=211852017 instance=ExtResource("5_3wy1v")]
-rotation = 2.3561945
+[node name="BulletManager" type="Node" parent="GameLayer/world" unique_id=1260691058 node_paths=PackedStringArray("world")]
+script = ExtResource("2_kfbq2")
+bullet = ExtResource("5_3wy1v")
+railgun_beam = ExtResource("2_0i4oc")
+world = NodePath("..")
 
 [node name="EnemyController" type="Node" parent="GameLayer/world" unique_id=504619865 node_paths=PackedStringArray("world", "player")]
 script = ExtResource("7_67ri8")
