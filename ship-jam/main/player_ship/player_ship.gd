@@ -5,10 +5,16 @@ class_name PlayerShip extends CharacterBody2D
 
 @export var max_speed : float = -1
 @export var max_speed_decay : float = 0.5
+var prev_velocity : Vector2
 
 @export var break_speed_decay : float = 0.5
 
 @export var resourceManager : Resource
+var energy_gain_rate : float = 0
+var energy_gain_factor : float = 0.2
+# We need to disable energy gain right when the railgun fires, since that makes
+# the acceleration go through the roof, which energy gain rate is based on.
+var energy_gain_enabled : bool = true
 
 @export var bullet_manager : Node
 var gun_on_cooldown : bool = false
@@ -56,11 +62,19 @@ func _physics_process(delta: float) -> void:
 		# This formula is VERY much still up in the air.
 		velocity = dir_opp_facing * (pre_charge_velocity.length() * 2 + 2000)
 		charging_railgun = false
+		energy_gain_enabled = false
+		$NoEnergyGainTimer.start()
 	
 	if charging_railgun:
 		# TODO: Adapt this to be slowdown, or whatever else it needs to be
 		velocity = Vector2(0, 0)
 	
+	var acceleration = (velocity - prev_velocity) * delta
+	energy_gain_rate = abs(velocity.angle_to(acceleration)) * acceleration.length() * energy_gain_factor
+	if energy_gain_enabled:
+		resourceManager.attempt_add_energy(energy_gain_rate)
+	
+	prev_velocity = velocity
 	var v_before = velocity
 	move_and_slide()
 	
@@ -85,3 +99,9 @@ func _on_shot_timer_timeout() -> void:
 func hit_by_bullet(bullet):
 	if bullet.team == teams.team.Enemy:
 		resourceManager.playerHealth -= 10
+
+
+
+
+func _on_no_energy_gain_timer_timeout() -> void:
+	energy_gain_enabled = true

@@ -4,7 +4,7 @@
 extends Resource
 
 @export var playerHealth : int = 0
-@export var playerEnergy : int = 0
+@export var playerEnergy : float = 0
 
 signal playerDied
 var playerDiedEmitted : bool = false
@@ -21,10 +21,16 @@ func _process(delta: float) -> void:
 		playerDiedEmitted = true
 	
 
+func attempt_add_energy(energy_to_add : float):
+	if playerEnergy + energy_to_add > 100:
+		playerEnergy = 100
+	else:
+		playerEnergy += energy_to_add
+
 # Attempts to spend x energy, if there is enough.
 # If there is, removes that much energy and returns true
 # If there is not, returns false.
-func attempt_spend_energy(energy_to_spend: int) -> bool:
+func attempt_spend_energy(energy_to_spend : float) -> bool:
 	if (playerEnergy >= energy_to_spend):
 		playerEnergy -= energy_to_spend
 		return true

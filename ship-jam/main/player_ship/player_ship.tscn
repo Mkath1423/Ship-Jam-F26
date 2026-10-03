@@ -19,4 +19,9 @@ shape = SubResource("CircleShape2D_vqkdg")
 wait_time = 0.5
 one_shot = true
 
+[node name="NoEnergyGainTimer" type="Timer" parent="." unique_id=468341761]
+wait_time = 0.05
+one_shot = true
+
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
+[connection signal="timeout" from="NoEnergyGainTimer" to="." method="_on_no_energy_gain_timer_timeout"]
