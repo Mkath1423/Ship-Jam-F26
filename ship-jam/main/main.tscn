@@ -3,13 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://fei1tbayus41" path="res://lexie/space-bg.jpg" id="1_53q0u"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="2_pjrb6"]
 [ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_xwkvk"]
-[ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://lexie/camera_follow.gd" id="4_c651c"]
+[ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_c651c"]
 [ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="5_3wy1v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
 radius = 81.3019
 
-[node name="Main" type="Node2D" unique_id=203743139]
+[node name="Main2" type="Node2D" unique_id=203743139]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=367381247]
 

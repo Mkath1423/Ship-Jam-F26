@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://cwmts2y63knh"]
 
 [ext_resource type="Texture2D" uid="uid://fei1tbayus41" path="res://lexie/space-bg.jpg" id="1_cq8bq"]
-[ext_resource type="Texture2D" uid="uid://yfdrvpdjrlwl" path="res://lexie/purple-ship.png" id="2_qjned"]
+[ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="3_1ror0"]
+[ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_40pup"]
+[ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="5_i73uh"]
+[ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="5_mu62u"]
 
 [node name="Main" type="Node2D" unique_id=203743139]
 
@@ -17,9 +20,43 @@ grow_vertical = 2
 texture = ExtResource("1_cq8bq")
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=997787331]
+follow_viewport_enabled = true
 
-[node name="player_ship" type="Node2D" parent="CanvasLayer2" unique_id=623867342]
+[node name="world" type="Node2D" parent="CanvasLayer2" unique_id=1357831140]
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer2/player_ship" unique_id=567666731]
-position = Vector2(478, 366)
-texture = ExtResource("2_qjned")
+[node name="player_ship" parent="CanvasLayer2/world" unique_id=1037649546 instance=ExtResource("3_1ror0")]
+position = Vector2(539, 326)
+boost_acceleration = 1000.0
+nudge_acceleration = 300.0
+max_speed = 1000.0
+max_speed_decay = 0.001
+break_speed_decay = 0.95
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer2/world/player_ship" unique_id=1146351980]
+zoom = Vector2(0.6, 0.6)
+process_callback = 0
+limit_enabled = false
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.4
+drag_top_margin = 0.4
+drag_right_margin = 0.3
+drag_bottom_margin = 0.0
+script = ExtResource("4_40pup")
+lower_bound_margin = 0.6
+upper_bound_margin = 0.2
+lower_bound_speed = 300.0
+upper_bound_speed = 1000.0
+gamma = 1.5
+
+[node name="Node" type="Node" parent="CanvasLayer2" unique_id=267404729 node_paths=PackedStringArray("world", "player")]
+script = ExtResource("5_i73uh")
+basic_enemy_scene = ExtResource("5_mu62u")
+world = NodePath("../world")
+player = NodePath("../world/player_ship")
+target_factor = 1.0
+seperation_factor = 10.0
+alignment_factor = 1.0
+cohesion_factor = 1.0
