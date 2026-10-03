@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://cwmts2y63knh"]
 
 [ext_resource type="Texture2D" uid="uid://fei1tbayus41" path="res://lexie/space-bg.jpg" id="1_cq8bq"]
+[ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_mu62u"]
+[ext_resource type="Script" uid="uid://ktdfb8idap2" path="res://lexie/rigid_body_2d.gd" id="2_ykd4u"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="3_1ror0"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_40pup"]
 [ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="5_i73uh"]
 [ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="5_mu62u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ykd4u"]
+radius = 81.3019
 
 [node name="Main" type="Node2D" unique_id=203743139]
 
@@ -24,6 +29,19 @@ follow_viewport_enabled = true
 
 [node name="world" type="Node2D" parent="CanvasLayer2" unique_id=1357831140]
 
+[node name="RigidBody2D" type="RigidBody2D" parent="CanvasLayer2/world" unique_id=75935433]
+position = Vector2(0, -3)
+mass = 10.0
+gravity_scale = 0.0
+angular_damp = 1.0
+script = ExtResource("2_ykd4u")
+
+[node name="Icon" type="Sprite2D" parent="CanvasLayer2/world/RigidBody2D" unique_id=435765569]
+texture = ExtResource("2_mu62u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/world/RigidBody2D" unique_id=1166989056]
+shape = SubResource("CircleShape2D_ykd4u")
+
 [node name="player_ship" parent="CanvasLayer2/world" unique_id=1037649546 instance=ExtResource("3_1ror0")]
 position = Vector2(539, 326)
 boost_acceleration = 1000.0
@@ -35,7 +53,6 @@ break_speed_decay = 0.95
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer2/world/player_ship" unique_id=1146351980]
 zoom = Vector2(0.6, 0.6)
 process_callback = 0
-limit_enabled = false
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
@@ -56,7 +73,9 @@ script = ExtResource("5_i73uh")
 basic_enemy_scene = ExtResource("5_mu62u")
 world = NodePath("../world")
 player = NodePath("../world/player_ship")
-target_factor = 1.0
+target_factor = 5.0
 seperation_factor = 10.0
-alignment_factor = 1.0
+alignment_factor = 3.0
 cohesion_factor = 1.0
+
+[connection signal="body_entered" from="CanvasLayer2/world/RigidBody2D" to="CanvasLayer2/world/RigidBody2D" method="_on_body_entered"]

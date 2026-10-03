@@ -7,7 +7,10 @@
 radius = 32.01562
 
 [node name="enemy_ship" type="CharacterBody2D" unique_id=1796651604]
+motion_mode = 1
 script = ExtResource("1_4nxlj")
+max_acceleration = 1000.0
+max_speed = 1700.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1532421090]
 modulate = Color(0.9141122, 0.72419167, 0, 1)

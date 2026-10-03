@@ -22,7 +22,7 @@ func compute_margin(value):
 	return lerpf(lower_bound_margin, upper_bound_margin, weight)
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	drag_bottom_margin = compute_margin(player.velocity.y)
 	drag_top_margin = compute_margin(-player.velocity.y)
 	drag_right_margin = compute_margin(player.velocity.x)
