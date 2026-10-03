@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bwipaqlsy2cth"]
+
+[ext_resource type="Script" uid="uid://d28v0s2l3l1i2" path="res://main/obstacles/asteroid_like.gd" id="1_75xyr"]
+[ext_resource type="Texture2D" uid="uid://kyvrukxth0qp" path="res://assets/Sprite - Satellitew.png" id="2_ifkpx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gjug"]
+size = Vector2(13, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8oc6l"]
+size = Vector2(14, 17)
+
+[node name="Satellite" type="RigidBody2D" unique_id=1165367634]
+script = ExtResource("1_75xyr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=515852874]
+texture = ExtResource("2_ifkpx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1655164217]
+position = Vector2(5.5, 0)
+shape = SubResource("RectangleShape2D_4gjug")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1539052407]
+position = Vector2(-8, 0.5)
+shape = SubResource("RectangleShape2D_8oc6l")

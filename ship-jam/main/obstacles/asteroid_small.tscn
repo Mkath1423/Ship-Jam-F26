@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://o78kybfk8g5h"]
+
+[ext_resource type="Script" uid="uid://d28v0s2l3l1i2" path="res://main/obstacles/asteroid_like.gd" id="1_fky6r"]
+[ext_resource type="Texture2D" uid="uid://hdaaygg3upoo" path="res://assets/Sprite - Aster1.png" id="2_arhul"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gjug"]
+radius = 5.0
+
+[node name="AsteroidSmall" type="RigidBody2D" unique_id=1827357198]
+script = ExtResource("1_fky6r")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1932313081]
+position = Vector2(-10, 3)
+texture = ExtResource("2_arhul")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1032215805]
+shape = SubResource("CircleShape2D_4gjug")

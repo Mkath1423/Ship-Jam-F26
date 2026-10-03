@@ -22,7 +22,6 @@ script = ExtResource("1_bsumw")
 resourceManager = ExtResource("6_grrlh")
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=367381247]
-visible = false
 
 [node name="GameBackground" type="TextureRect" parent="BackgroundLayer" unique_id=133749328]
 texture_filter = 1
