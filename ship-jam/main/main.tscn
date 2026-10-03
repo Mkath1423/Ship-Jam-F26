@@ -19,9 +19,10 @@ radius = 81.3019
 script = ExtResource("1_bsumw")
 resourceManager = ExtResource("6_grrlh")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=367381247]
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=367381247]
+visible = false
 
-[node name="GameBackground" type="TextureRect" parent="CanvasLayer" unique_id=133749328]
+[node name="GameBackground" type="TextureRect" parent="BackgroundLayer" unique_id=133749328]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,32 +33,33 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_53q0u")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=997787331]
+[node name="GameLayer" type="CanvasLayer" parent="." unique_id=997787331]
+visible = false
 follow_viewport_enabled = true
 
-[node name="world" type="Node2D" parent="CanvasLayer2" unique_id=647259127]
+[node name="world" type="Node2D" parent="GameLayer" unique_id=647259127]
 
-[node name="RailgunBullet" parent="CanvasLayer2/world" unique_id=75877084 instance=ExtResource("2_0i4oc")]
+[node name="RailgunBullet" parent="GameLayer/world" unique_id=75877084 instance=ExtResource("2_0i4oc")]
 
-[node name="BulletManager" type="Node" parent="CanvasLayer2/world" unique_id=1260691058 node_paths=PackedStringArray("world")]
+[node name="BulletManager" type="Node" parent="GameLayer/world" unique_id=1260691058 node_paths=PackedStringArray("world")]
 script = ExtResource("2_kfbq2")
 bullet = ExtResource("5_3wy1v")
 railgun_beam = ExtResource("2_0i4oc")
 world = NodePath("..")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="CanvasLayer2/world" unique_id=123223667]
+[node name="RigidBody2D" type="RigidBody2D" parent="GameLayer/world" unique_id=123223667]
 position = Vector2(286, 132)
 mass = 10.0
 gravity_scale = 0.0
 angular_damp = 1.0
 
-[node name="Icon" type="Sprite2D" parent="CanvasLayer2/world/RigidBody2D" unique_id=1804569158]
+[node name="Icon" type="Sprite2D" parent="GameLayer/world/RigidBody2D" unique_id=1804569158]
 texture = ExtResource("2_xwkvk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/world/RigidBody2D" unique_id=895099602]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameLayer/world/RigidBody2D" unique_id=895099602]
 shape = SubResource("CircleShape2D_vqkdg")
 
-[node name="player_ship" parent="CanvasLayer2/world" unique_id=1037649546 node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_pjrb6")]
+[node name="player_ship" parent="GameLayer/world" unique_id=1037649546 node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_pjrb6")]
 position = Vector2(539, 326)
 boost_acceleration = 1000.0
 nudge_acceleration = 300.0
@@ -67,7 +69,7 @@ break_speed_decay = 0.95
 resourceManager = ExtResource("6_grrlh")
 bullet_manager = NodePath("../BulletManager")
 
-[node name="Camera2D" type="Camera2D" parent="CanvasLayer2/world/player_ship" unique_id=1202193931]
+[node name="Camera2D" type="Camera2D" parent="GameLayer/world/player_ship" unique_id=1202193931]
 zoom = Vector2(0.6, 0.6)
 process_callback = 0
 limit_enabled = false
@@ -86,10 +88,10 @@ lower_bound_speed = 300.0
 upper_bound_speed = 1000.0
 gamma = 1.5
 
-[node name="LaserBullet" parent="CanvasLayer2/world" unique_id=211852017 instance=ExtResource("5_3wy1v")]
+[node name="LaserBullet" parent="GameLayer/world" unique_id=211852017 instance=ExtResource("5_3wy1v")]
 rotation = 2.3561945
 
-[node name="EnemyController" type="Node" parent="CanvasLayer2/world" unique_id=504619865 node_paths=PackedStringArray("world", "player")]
+[node name="EnemyController" type="Node" parent="GameLayer/world" unique_id=504619865 node_paths=PackedStringArray("world", "player")]
 script = ExtResource("7_67ri8")
 basic_enemy_scene = ExtResource("8_grrlh")
 world = NodePath("..")
@@ -100,6 +102,39 @@ alignment_factor = 3.0
 cohesion_factor = 1.0
 metadata/_custom_type_script = "uid://gg7s7t6k2dtm"
 
-[node name="StartScreen" type="CanvasLayer" parent="." unique_id=1996391416]
+[node name="GameStartLayer" type="CanvasLayer" parent="." unique_id=1996391416]
 
-[node name="EndScreen" type="CanvasLayer" parent="." unique_id=540281078]
+[node name="StartButton" type="Node2D" parent="GameStartLayer" unique_id=1852466900]
+position = Vector2(259, 173)
+
+[node name="Sprite2D" type="Sprite2D" parent="GameStartLayer/StartButton" unique_id=1352167858]
+position = Vector2(-1, 2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_xwkvk")
+
+[node name="StartGameButton" type="Button" parent="GameStartLayer/StartButton" unique_id=961860294]
+offset_left = -55.0
+offset_top = -12.0
+offset_right = 51.0
+offset_bottom = 19.0
+text = "START GAME"
+
+[node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=540281078]
+visible = false
+
+[node name="Node2D" type="Node2D" parent="GameOverLayer" unique_id=119873175]
+position = Vector2(449, 259)
+
+[node name="Sprite2D" type="Sprite2D" parent="GameOverLayer/Node2D" unique_id=1468201272]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_xwkvk")
+
+[node name="GoToMenuButton" type="Button" parent="GameOverLayer/Node2D" unique_id=212844781]
+offset_left = -48.0
+offset_top = -16.0
+offset_right = 51.0
+offset_bottom = 15.0
+text = "Go to menu"
+
+[connection signal="pressed" from="GameStartLayer/StartButton/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GameOverLayer/Node2D/GoToMenuButton" to="." method="_on_go_to_menu_button_pressed"]
