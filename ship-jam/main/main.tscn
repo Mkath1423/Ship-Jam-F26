@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="2_pjrb6"]
 [ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_xwkvk"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://lexie/camera_follow.gd" id="4_c651c"]
+[ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="5_3wy1v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
 radius = 81.3019
@@ -66,3 +67,5 @@ upper_bound_margin = 0.2
 lower_bound_speed = 300.0
 upper_bound_speed = 1000.0
 gamma = 1.5
+
+[node name="LaserBullet" parent="CanvasLayer2/world" unique_id=211852017 instance=ExtResource("5_3wy1v")]

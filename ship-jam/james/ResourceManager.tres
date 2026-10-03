@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://c1k77bq5y0wvi"]
+
+[ext_resource type="Script" uid="uid://n7bov537pcdm" path="res://james/ResourceManager.gd" id="1_3uyut"]
+
+[resource]
+script = ExtResource("1_3uyut")
+playerHealth = 100
