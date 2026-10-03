@@ -16,6 +16,9 @@ var gun_on_cooldown : bool = false
 const teams = preload("res://main/teams.gd")
 var team : teams.team = teams.team.Player
 
+var charging_railgun : bool = false
+var pre_charge_velocity : Vector2
+
 var look_at = Vector2.LEFT
 
 func _physics_process(delta: float) -> void:
@@ -42,6 +45,20 @@ func _physics_process(delta: float) -> void:
 		var decay = max_speed_decay * delta
 		velocity *= (decay * speed + (1 - decay) * max_speed) / speed
 	
+	if Input.is_action_just_pressed("alt_shoot"):
+		pre_charge_velocity = velocity
+		charging_railgun = true
+	
+	if Input.is_action_just_released("alt_shoot"):
+		bullet_manager.spawn_railgun_beam(teams.team.Player, position, 3000, $Sprite2D.rotation)
+		var dir_opp_facing = -Vector2(sin($Sprite2D.rotation), -cos($Sprite2D.rotation)).normalized()
+		# This formula is VERY much still up in the air.
+		velocity = dir_opp_facing * (pre_charge_velocity.length() * 2 + 2000)
+		charging_railgun = false
+	
+	if charging_railgun:
+		# TODO: Adapt this to be slowdown, or whatever else it needs to be
+		velocity = Vector2(0, 0)
 	
 	var v_before = velocity
 	move_and_slide()

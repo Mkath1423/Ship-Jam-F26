@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dqr2qk0nhtxwq"]
+
+[ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="1_3sai6"]
+[ext_resource type="Script" uid="uid://hyku1mxwv5b1" path="res://james/railgun_bullet.gd" id="1_8bkei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3sai6"]
+
+[node name="RailgunBullet" type="Area2D" unique_id=769879035]
+script = ExtResource("1_8bkei")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1464411184]
+scale = Vector2(0.02, 2)
+texture = ExtResource("1_3sai6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1098982394]
+scale = Vector2(0.128, 12.8)
+shape = SubResource("RectangleShape2D_3sai6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

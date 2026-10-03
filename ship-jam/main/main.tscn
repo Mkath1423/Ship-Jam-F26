@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bhsfevmk7ruxt"]
 
 [ext_resource type="Texture2D" uid="uid://fei1tbayus41" path="res://lexie/space-bg.jpg" id="1_53q0u"]
+[ext_resource type="PackedScene" uid="uid://dqr2qk0nhtxwq" path="res://james/railgun_bullet.tscn" id="2_0i4oc"]
 [ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="2_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="2_pjrb6"]
 [ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_xwkvk"]
@@ -33,9 +34,12 @@ follow_viewport_enabled = true
 
 [node name="world" type="Node2D" parent="CanvasLayer2" unique_id=647259127]
 
-[node name="Node" type="Node" parent="CanvasLayer2/world" unique_id=1260691058 node_paths=PackedStringArray("world")]
+[node name="RailgunBullet" parent="CanvasLayer2/world" unique_id=75877084 instance=ExtResource("2_0i4oc")]
+
+[node name="BulletManager" type="Node" parent="CanvasLayer2/world" unique_id=1260691058 node_paths=PackedStringArray("world")]
 script = ExtResource("2_kfbq2")
 bullet = ExtResource("5_3wy1v")
+railgun_beam = ExtResource("2_0i4oc")
 world = NodePath("..")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="CanvasLayer2/world" unique_id=123223667]
@@ -58,7 +62,7 @@ max_speed = 1000.0
 max_speed_decay = 0.001
 break_speed_decay = 0.95
 resourceManager = ExtResource("6_grrlh")
-bullet_manager = NodePath("../Node")
+bullet_manager = NodePath("../BulletManager")
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer2/world/player_ship" unique_id=1202193931]
 zoom = Vector2(0.6, 0.6)
