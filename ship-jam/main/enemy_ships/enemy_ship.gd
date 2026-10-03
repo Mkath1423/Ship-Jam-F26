@@ -15,9 +15,3 @@ func hit_by_bullet(bullet):
 	if bullet.team == teams.team.Player:
 		is_dying = true
 		print(true)
-
-
-#func _on_hitbox_body_entered(body: Node2D) -> void:
-#	if body is not EnemyShip:
-#		dead = true
-#		print("I DIED")

@@ -67,7 +67,3 @@ func _on_shot_timer_timeout() -> void:
 func hit_by_bullet(bullet):
 	if bullet.team == teams.team.Enemy:
 		resourceManager.playerHealth -= 10
-
-#func _on_hitbox_body_entered(body: Node2D) -> void:
-#	if body is EnemyShip:
-#		resourceManager.playerHealth -= 10
