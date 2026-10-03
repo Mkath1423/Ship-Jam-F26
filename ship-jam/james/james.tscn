@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="3_08q1g"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_hnm88"]
 [ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="5_1due4"]
+[ext_resource type="Resource" uid="uid://c1k77bq5y0wvi" path="res://james/ResourceManager.tres" id="6_7m8rh"]
 [ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="6_ybs7q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
@@ -54,6 +55,7 @@ nudge_acceleration = 300.0
 max_speed = 1000.0
 max_speed_decay = 0.001
 break_speed_decay = 0.95
+resourceManager = ExtResource("6_7m8rh")
 bullet_manager = NodePath("../Node")
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer2/world/player_ship" unique_id=1202193931]

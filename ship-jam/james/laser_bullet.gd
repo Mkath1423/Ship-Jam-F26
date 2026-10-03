@@ -1,9 +1,10 @@
 extends Area2D
 
-@export var resourceManager : Resource
-
 var speed : float = 0
 
+const bullet_types = preload("res://main/bullets/bullet_types.gd")
+
+var bullet_type : bullet_types.bullet_types
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,4 +16,5 @@ func _process(delta: float) -> void:
 	position += Vector2(sin(rotation), -cos(rotation)) * speed * delta
 
 func _on_body_entered(body: Node2D) -> void:
-	resourceManager.playerHealth -= 10
+	if body.has_method("hit_by_bullet"):
+		body.hit_by_bullet(self)
