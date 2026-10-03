@@ -1,0 +1,1 @@
+enum team {Enemy, Player}

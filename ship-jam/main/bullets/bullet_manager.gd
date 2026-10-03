@@ -3,11 +3,11 @@ extends Node
 @export var bullet : PackedScene
 @export var world : Node2D
 
-const bullet_types = preload("res://main/bullets/bullet_types.gd")
+const teams = preload("res://main/teams.gd")
 
-func spawn_bullet(bullet_type, position, speed, rotation):
+func spawn_bullet(bullet_team, position, speed, rotation):
 	var node = bullet.instantiate()
-	node.bullet_type = bullet_type
+	node.team = bullet_team
 	node.position = position
 	node.speed = speed
 	node.rotation = rotation

@@ -12,7 +12,9 @@ extends CharacterBody2D
 
 @export var bullet_manager : Node
 var gun_on_cooldown : bool = false
-const bullet_types = preload("res://main/bullets/bullet_types.gd")
+
+const teams = preload("res://main/teams.gd")
+var team : teams.team = teams.team.Player
 
 var look_at = Vector2.LEFT
 
@@ -45,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if Input.is_action_pressed("shoot") and not gun_on_cooldown:
-		bullet_manager.spawn_bullet(bullet_types.bullet_types.PlayerBullet, position, 3000, $Sprite2D.rotation)
+		bullet_manager.spawn_bullet(teams.team.Player, position, 3000, $Sprite2D.rotation)
 		$ShotTimer.start()
 		gun_on_cooldown = true
 	
@@ -62,6 +64,5 @@ func _on_shot_timer_timeout() -> void:
 	gun_on_cooldown = false
 
 func hit_by_bullet(bullet):
-	if bullet.bullet_type == bullet_types.bullet_types.EnemyBullet:
+	if bullet.team == teams.team.Enemy:
 		resourceManager.playerHealth -= 10
-	print(resourceManager.playerHealth)
