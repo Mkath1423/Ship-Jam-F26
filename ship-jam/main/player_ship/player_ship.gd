@@ -8,6 +8,8 @@ extends CharacterBody2D
 
 @export var break_speed_decay : float = 0.5
 
+@export var bullet_manager : Node
+
 var look_at = Vector2.LEFT
 
 func _physics_process(delta: float) -> void:
@@ -37,6 +39,10 @@ func _physics_process(delta: float) -> void:
 	
 	var v_before = velocity
 	move_and_slide()
+	
+	if Input.is_action_pressed("shoot"):
+		bullet_manager.spawn_bullet(position, speed, rotation)
+	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()

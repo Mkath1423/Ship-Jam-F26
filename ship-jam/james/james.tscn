@@ -1,3 +1,79 @@
-[gd_scene format=3 uid="uid://d4ijup0geoa6"]
+[gd_scene format=3 uid="uid://qq2ws7wtkwlm"]
 
-[node name="James" type="Node2D" unique_id=362669777]
+[ext_resource type="Texture2D" uid="uid://fei1tbayus41" path="res://lexie/space-bg.jpg" id="1_r62q0"]
+[ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_m1pqs"]
+[ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="3_08q1g"]
+[ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_hnm88"]
+[ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="5_1due4"]
+[ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="6_ybs7q"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
+radius = 81.3019
+
+[node name="Main2" type="Node2D" unique_id=203743139]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=367381247]
+
+[node name="GameBackground" type="TextureRect" parent="CanvasLayer" unique_id=133749328]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 100.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_r62q0")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=997787331]
+follow_viewport_enabled = true
+
+[node name="world" type="Node2D" parent="CanvasLayer2" unique_id=647259127]
+
+[node name="Node" type="Node" parent="CanvasLayer2/world" unique_id=362886006 node_paths=PackedStringArray("world")]
+script = ExtResource("6_ybs7q")
+bullet = ExtResource("5_1due4")
+world = NodePath("..")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="CanvasLayer2/world" unique_id=123223667]
+position = Vector2(286, 132)
+mass = 10.0
+gravity_scale = 0.0
+angular_damp = 1.0
+
+[node name="Icon" type="Sprite2D" parent="CanvasLayer2/world/RigidBody2D" unique_id=1804569158]
+texture = ExtResource("2_m1pqs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/world/RigidBody2D" unique_id=895099602]
+shape = SubResource("CircleShape2D_vqkdg")
+
+[node name="player_ship" parent="CanvasLayer2/world" unique_id=1037649546 node_paths=PackedStringArray("bullet_manager") instance=ExtResource("3_08q1g")]
+position = Vector2(539, 326)
+boost_acceleration = 1000.0
+nudge_acceleration = 300.0
+max_speed = 1000.0
+max_speed_decay = 0.001
+break_speed_decay = 0.95
+bullet_manager = NodePath("../Node")
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer2/world/player_ship" unique_id=1202193931]
+zoom = Vector2(0.6, 0.6)
+process_callback = 0
+limit_enabled = false
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.4
+drag_top_margin = 0.4
+drag_right_margin = 0.3
+drag_bottom_margin = 0.0
+script = ExtResource("4_hnm88")
+lower_bound_margin = 0.6
+upper_bound_margin = 0.2
+lower_bound_speed = 300.0
+upper_bound_speed = 1000.0
+gamma = 1.5
+
+[node name="LaserBullet" parent="CanvasLayer2/world" unique_id=211852017 instance=ExtResource("5_1due4")]
+rotation = 2.3561945

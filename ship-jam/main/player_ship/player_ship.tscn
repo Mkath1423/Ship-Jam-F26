@@ -8,6 +8,11 @@ radius = 48.010414
 
 [node name="player_ship" type="CharacterBody2D" unique_id=1037649546]
 script = ExtResource("1_cplq0")
+boost_acceleration = null
+nudge_acceleration = null
+max_speed = null
+max_speed_decay = null
+break_speed_decay = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1536780458]
 texture = ExtResource("2_upp5r")
