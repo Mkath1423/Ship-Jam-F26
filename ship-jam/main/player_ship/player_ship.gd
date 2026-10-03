@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		charging_railgun = true
 	
 	if Input.is_action_just_released("alt_shoot"):
-		bullet_manager.spawn_railgun_beam(teams.team.Player, position, 3000, $Sprite2D.rotation)
+		bullet_manager.spawn_railgun_beam(teams.team.Player, position, 5000, $Sprite2D.rotation)
 		var dir_opp_facing = -Vector2(sin($Sprite2D.rotation), -cos($Sprite2D.rotation)).normalized()
 		# This formula is VERY much still up in the air.
 		velocity = dir_opp_facing * (pre_charge_velocity.length() * 2 + 2000)
