@@ -6,9 +6,6 @@ extends Resource
 @export var playerHealth : int = 0
 @export var playerEnergy : float = 0
 
-signal playerDied
-var playerDiedEmitted : bool = false
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -16,9 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if (not playerDiedEmitted and playerHealth <= 0):
-		playerDied.emit()
-		playerDiedEmitted = true
+	pass
 	
 
 func attempt_add_energy(energy_to_add : float):

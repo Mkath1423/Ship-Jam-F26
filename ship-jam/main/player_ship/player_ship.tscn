@@ -6,6 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
 radius = 48.010414
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8oc6l"]
+radius = 50.01
+
 [node name="player_ship" type="CharacterBody2D" unique_id=1037649546]
 script = ExtResource("1_cplq0")
 
@@ -23,5 +26,11 @@ one_shot = true
 wait_time = 0.05
 one_shot = true
 
+[node name="Hitbox" type="Area2D" parent="." unique_id=2096706557]
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox" unique_id=997891879]
+shape = SubResource("CircleShape2D_8oc6l")
+
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="NoEnergyGainTimer" to="." method="_on_no_energy_gain_timer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

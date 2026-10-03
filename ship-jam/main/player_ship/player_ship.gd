@@ -25,6 +25,8 @@ var team : teams.team = teams.team.Player
 var charging_railgun : bool = false
 var pre_charge_velocity : Vector2
 
+var has_hit_player : bool = false
+
 var look_at = Vector2.LEFT
 
 func _physics_process(delta: float) -> void:
@@ -88,10 +90,7 @@ func _physics_process(delta: float) -> void:
 		var collider = collision.get_collider()
 		if collider is RigidBody2D:
 			collider.apply_impulse(-velocity + v_before, collider.position)
-		
-		elif collider is EnemyShip:
-			resourceManager.playerHealth -= 10
-			print(resourceManager.playerHealth)
+	
 
 func _on_shot_timer_timeout() -> void:
 	gun_on_cooldown = false
@@ -100,8 +99,12 @@ func hit_by_bullet(bullet):
 	if bullet.team == teams.team.Enemy:
 		resourceManager.playerHealth -= 10
 
-
-
-
 func _on_no_energy_gain_timer_timeout() -> void:
 	energy_gain_enabled = true
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body is EnemyShip:
+		resourceManager.playerHealth -= 10
+		body.is_dying = true
+		print(resourceManager.playerHealth)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bhsfevmk7ruxt"]
 
 [ext_resource type="Texture2D" uid="uid://fei1tbayus41" path="res://lexie/space-bg.jpg" id="1_53q0u"]
+[ext_resource type="Script" uid="uid://c4p6p2kixkbj7" path="res://main/main.gd" id="1_bsumw"]
 [ext_resource type="PackedScene" uid="uid://dqr2qk0nhtxwq" path="res://james/railgun_bullet.tscn" id="2_0i4oc"]
 [ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="2_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="2_pjrb6"]
@@ -15,6 +16,8 @@
 radius = 81.3019
 
 [node name="Main2" type="Node2D" unique_id=203743139]
+script = ExtResource("1_bsumw")
+resourceManager = ExtResource("6_grrlh")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=367381247]
 
@@ -96,3 +99,7 @@ seperation_factor = 10.0
 alignment_factor = 3.0
 cohesion_factor = 1.0
 metadata/_custom_type_script = "uid://gg7s7t6k2dtm"
+
+[node name="StartScreen" type="CanvasLayer" parent="." unique_id=1996391416]
+
+[node name="EndScreen" type="CanvasLayer" parent="." unique_id=540281078]

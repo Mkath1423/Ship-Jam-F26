@@ -5,4 +5,3 @@
 [resource]
 script = ExtResource("1_3uyut")
 playerHealth = 100
-playerEnergy = 100

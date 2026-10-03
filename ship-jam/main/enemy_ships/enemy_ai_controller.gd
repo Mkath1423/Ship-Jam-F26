@@ -165,9 +165,6 @@ func _process(delta: float) -> void:
 				info.node.velocity *= 0.1
 				collider.apply_central_force(v_before - info.node.velocity)
 			
-			elif collider is PlayerShip:
-				info.node.is_dying = true
-			
 			elif collider is EnemyShip:
 				var k = collision.get_normal()
 				var impulse = k.dot(collider.velocity - info.node.velocity) 
