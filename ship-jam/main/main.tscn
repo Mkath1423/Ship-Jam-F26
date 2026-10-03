@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="5_3wy1v"]
 [ext_resource type="Resource" uid="uid://c1k77bq5y0wvi" path="res://james/ResourceManager.tres" id="6_grrlh"]
 [ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="7_67ri8"]
+[ext_resource type="Script" uid="uid://d28v0s2l3l1i2" path="res://main/obstacles/asteroid_like.gd" id="7_fwcvl"]
 [ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="8_grrlh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
@@ -52,6 +53,7 @@ position = Vector2(286, 132)
 mass = 10.0
 gravity_scale = 0.0
 angular_damp = 1.0
+script = ExtResource("7_fwcvl")
 
 [node name="Icon" type="Sprite2D" parent="GameLayer/world/RigidBody2D" unique_id=1804569158]
 texture = ExtResource("2_xwkvk")

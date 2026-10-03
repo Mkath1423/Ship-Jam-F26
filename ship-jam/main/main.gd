@@ -32,7 +32,6 @@ func set_screen(screen : screens):
 
 func game_over():
 	set_screen(screens.GameOver)
-	#print("That's a wrap, folks!")
 
 
 func _on_start_game_button_pressed() -> void:
