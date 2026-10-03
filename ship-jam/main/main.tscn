@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bhsfevmk7ruxt"]
 
 [ext_resource type="Texture2D" uid="uid://fei1tbayus41" path="res://lexie/space-bg.jpg" id="1_53q0u"]
+[ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="2_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="2_pjrb6"]
 [ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_xwkvk"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_c651c"]
@@ -29,6 +30,11 @@ follow_viewport_enabled = true
 
 [node name="world" type="Node2D" parent="CanvasLayer2" unique_id=647259127]
 
+[node name="Node" type="Node" parent="CanvasLayer2/world" unique_id=1260691058 node_paths=PackedStringArray("world")]
+script = ExtResource("2_kfbq2")
+bullet = ExtResource("5_3wy1v")
+world = NodePath("..")
+
 [node name="RigidBody2D" type="RigidBody2D" parent="CanvasLayer2/world" unique_id=123223667]
 position = Vector2(286, 132)
 mass = 10.0
@@ -41,13 +47,14 @@ texture = ExtResource("2_xwkvk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/world/RigidBody2D" unique_id=895099602]
 shape = SubResource("CircleShape2D_vqkdg")
 
-[node name="player_ship" parent="CanvasLayer2/world" unique_id=1037649546 instance=ExtResource("2_pjrb6")]
+[node name="player_ship" parent="CanvasLayer2/world" unique_id=1037649546 node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_pjrb6")]
 position = Vector2(539, 326)
 boost_acceleration = 1000.0
 nudge_acceleration = 300.0
 max_speed = 1000.0
 max_speed_decay = 0.001
 break_speed_decay = 0.95
+bullet_manager = NodePath("../Node")
 
 [node name="Camera2D" type="Camera2D" parent="CanvasLayer2/world/player_ship" unique_id=1202193931]
 zoom = Vector2(0.6, 0.6)

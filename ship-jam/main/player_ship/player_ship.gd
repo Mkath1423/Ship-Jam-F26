@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if Input.is_action_pressed("shoot"):
-		bullet_manager.spawn_bullet(position, speed, rotation)
+		bullet_manager.spawn_bullet(position, 3000, $Sprite2D.rotation)
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
