@@ -20,3 +20,13 @@ func _process(delta: float) -> void:
 		playerDied.emit()
 		playerDiedEmitted = true
 	
+
+# Attempts to spend x energy, if there is enough.
+# If there is, removes that much energy and returns true
+# If there is not, returns false.
+func attempt_spend_energy(energy_to_spend: int) -> bool:
+	if (playerEnergy >= energy_to_spend):
+		playerEnergy -= energy_to_spend
+		return true
+	else:
+		return false

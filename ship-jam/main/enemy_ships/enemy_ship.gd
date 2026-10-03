@@ -14,4 +14,3 @@ func set_state(rotation):
 func hit_by_bullet(bullet):
 	if bullet.team == teams.team.Player:
 		is_dying = true
-		print(true)
