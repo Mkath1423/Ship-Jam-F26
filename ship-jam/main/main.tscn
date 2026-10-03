@@ -69,3 +69,4 @@ upper_bound_speed = 1000.0
 gamma = 1.5
 
 [node name="LaserBullet" parent="CanvasLayer2/world" unique_id=211852017 instance=ExtResource("5_3wy1v")]
+rotation = 2.3561945

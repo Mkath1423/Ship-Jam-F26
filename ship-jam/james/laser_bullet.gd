@@ -2,6 +2,9 @@ extends Area2D
 
 @export var resourceManager : Resource
 
+var speed : float = 10
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -9,10 +12,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
+	position += Vector2(sin(rotation), -cos(rotation)) * speed * delta
 
 func _on_body_entered(body: Node2D) -> void:
-	print("COLLISION!")
-	resourceManager.playerHealth -= 1
-	print(resourceManager.playerHealth)
+	resourceManager.playerHealth -= 10
