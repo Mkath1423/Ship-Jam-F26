@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://c1k77bq5y0wvi" path="res://james/ResourceManager.tres" id="2_cfcxt"]
 [ext_resource type="Texture2D" uid="uid://cvo4rrnn8ubvs" path="res://assets/Sprite - rocket2b.png" id="3_cfcxt"]
 [ext_resource type="AudioStream" uid="uid://dp8cb0wbq7vhg" path="res://assets/ShortLaserShot.wav" id="4_t04cl"]
+[ext_resource type="AudioStream" uid="uid://bimqvmj31ge2b" path="res://assets/shortJets.wav" id="5_1exhs"]
 
 [sub_resource type="Gradient" id="Gradient_cfcxt"]
 offsets = PackedFloat32Array(0, 0.7)
@@ -118,6 +119,9 @@ stream = ExtResource("4_t04cl")
 
 [node name="LaserShot3" type="AudioStreamPlayer" parent="." unique_id=1206878692]
 stream = ExtResource("4_t04cl")
+
+[node name="Jets" type="AudioStreamPlayer" parent="." unique_id=2014334903]
+stream = ExtResource("5_1exhs")
 
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="NoEnergyGainTimer" to="." method="_on_no_energy_gain_timer_timeout"]

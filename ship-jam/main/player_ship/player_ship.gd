@@ -75,6 +75,10 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_pressed("boost"):
 		velocity += look_at * delta * boost_acceleration
 		boost_particles.emitting = true
+		#if Input.is_action_just_pressed("boost"):
+		#	$Jets.play()
+		#elif Input.is_action_just_released("boost"):
+		#	$Jets.stop()
 	else:
 		boost_particles.emitting = false
 		break_particles.emitting = false
