@@ -16,6 +16,7 @@ height = 28.0
 [node name="Satellite" type="RigidBody2D" unique_id=1165367634]
 mass = 10.0
 gravity_scale = 0.0
+lock_rotation = true
 script = ExtResource("1_75xyr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=515852874]

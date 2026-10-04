@@ -9,6 +9,7 @@ radius = 37.0
 [node name="AsteroidBig" type="RigidBody2D" unique_id=734619674]
 mass = 7.0
 gravity_scale = 0.0
+lock_rotation = true
 script = ExtResource("1_cpyvv")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1509811818]

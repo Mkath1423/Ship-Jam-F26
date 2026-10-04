@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bv5gajt14s8ni"]
+
+[node name="hit" type="CPUParticles2D" unique_id=1275141304]
+emitting = false
+amount = 3
+lifetime = 0.25
+one_shot = true
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_max = 50.09
+angle_max = 360.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
