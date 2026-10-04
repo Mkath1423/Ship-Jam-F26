@@ -91,6 +91,7 @@ func _physics_process(delta: float) -> void:
 		if (resourceManager.attempt_spend_energy(20)):
 			pre_charge_velocity = velocity
 			charging_railgun = true
+			$RailgunCharge.play()
 	
 	if charging_railgun and Input.is_action_just_released("alt_shoot"):
 		bullet_manager.spawn_railgun_beam(teams.team.Player, position, 5000, $Sprite2D.rotation)
@@ -99,6 +100,8 @@ func _physics_process(delta: float) -> void:
 		velocity = dir_opp_facing * (pre_charge_velocity.length() * 2 + 2000)
 		charging_railgun = false
 		energy_gain_enabled = false
+		$RailgunCharge.stop()
+		$RailgunShot.play()
 		$NoEnergyGainTimer.start()
 	
 	if charging_railgun:

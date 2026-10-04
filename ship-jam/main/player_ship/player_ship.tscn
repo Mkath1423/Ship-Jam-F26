@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cvo4rrnn8ubvs" path="res://assets/Sprite - rocket2b.png" id="3_cfcxt"]
 [ext_resource type="AudioStream" uid="uid://dp8cb0wbq7vhg" path="res://assets/ShortLaserShot.wav" id="4_t04cl"]
 [ext_resource type="AudioStream" uid="uid://bimqvmj31ge2b" path="res://assets/shortJets.wav" id="5_1exhs"]
+[ext_resource type="AudioStream" uid="uid://b8j01cd01qp45" path="res://assets/RailgunChargeShort.wav" id="6_yayrn"]
 
 [sub_resource type="Gradient" id="Gradient_cfcxt"]
 offsets = PackedFloat32Array(0, 0.7)
@@ -129,6 +130,13 @@ stream = ExtResource("4_t04cl")
 
 [node name="Jets" type="AudioStreamPlayer" parent="." unique_id=2014334903]
 stream = ExtResource("5_1exhs")
+
+[node name="RailgunShot" type="AudioStreamPlayer" parent="." unique_id=1433140067]
+stream = ExtResource("4_t04cl")
+volume_db = 10.0
+
+[node name="RailgunCharge" type="AudioStreamPlayer" parent="." unique_id=989704190]
+stream = ExtResource("6_yayrn")
 
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="NoEnergyGainTimer" to="." method="_on_no_energy_gain_timer_timeout"]
