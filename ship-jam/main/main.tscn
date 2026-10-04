@@ -21,6 +21,23 @@
 script = ExtResource("1_bsumw")
 resourceManager = ExtResource("6_grrlh")
 
+[node name="GameStartLayer" type="CanvasLayer" parent="." unique_id=1996391416]
+
+[node name="StartButton" type="Node2D" parent="GameStartLayer" unique_id=1852466900]
+position = Vector2(259, 173)
+
+[node name="Sprite2D" type="Sprite2D" parent="GameStartLayer/StartButton" unique_id=1352167858]
+position = Vector2(-1, 2)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_xwkvk")
+
+[node name="StartGameButton" type="Button" parent="GameStartLayer/StartButton" unique_id=961860294]
+offset_left = -55.0
+offset_top = -12.0
+offset_right = 51.0
+offset_bottom = 19.0
+text = "START GAME"
+
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=367381247]
 visible = false
 
@@ -99,24 +116,8 @@ position = Vector2(759, 364)
 [node name="Satellite" parent="GameLayer/world" unique_id=1165367634 instance=ExtResource("14_4hmqs")]
 position = Vector2(825, 197)
 
-[node name="Ui" parent="GameLayer" unique_id=1415882682 instance=ExtResource("11_bsumw")]
-
-[node name="GameStartLayer" type="CanvasLayer" parent="." unique_id=1996391416]
-
-[node name="StartButton" type="Node2D" parent="GameStartLayer" unique_id=1852466900]
-position = Vector2(259, 173)
-
-[node name="Sprite2D" type="Sprite2D" parent="GameStartLayer/StartButton" unique_id=1352167858]
-position = Vector2(-1, 2)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_xwkvk")
-
-[node name="StartGameButton" type="Button" parent="GameStartLayer/StartButton" unique_id=961860294]
-offset_left = -55.0
-offset_top = -12.0
-offset_right = 51.0
-offset_bottom = 19.0
-text = "START GAME"
+[node name="Ui" parent="." unique_id=1415882682 instance=ExtResource("11_bsumw")]
+visible = false
 
 [node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=540281078]
 visible = false

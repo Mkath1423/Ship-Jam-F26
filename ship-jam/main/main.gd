@@ -15,19 +15,22 @@ func _process(delta: float) -> void:
 
 func set_screen(screen : screens):
 	if screen == screens.GameStart:
+		$GameStartLayer.show()
 		$BackgroundLayer.hide()
 		$GameLayer.hide()
-		$GameStartLayer.show()
+		$Ui.hide()
 		$GameOverLayer.hide()
 	elif screen == screens.Game:
+		$GameStartLayer.hide()
 		$BackgroundLayer.show()
 		$GameLayer.show()
-		$GameStartLayer.hide()
+		$Ui.show()
 		$GameOverLayer.hide()
 	elif screen == screens.GameOver:
+		$GameStartLayer.hide()
 		$BackgroundLayer.hide()
 		$GameLayer.hide()
-		$GameStartLayer.hide()
+		$Ui.hide()
 		$GameOverLayer.show()
 
 func game_over():
