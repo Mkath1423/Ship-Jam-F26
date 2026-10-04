@@ -17,9 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://db8v8tki32l23" path="res://main/obstacles/asteroid_medium.tscn" id="12_n3o0a"]
 [ext_resource type="PackedScene" uid="uid://o78kybfk8g5h" path="res://main/obstacles/asteroid_small.tscn" id="13_s758e"]
 [ext_resource type="PackedScene" uid="uid://bwipaqlsy2cth" path="res://main/obstacles/satellite.tscn" id="14_4hmqs"]
-[ext_resource type="Texture2D" uid="uid://cvqrwt7peubue" path="res://assets/UI - border.png" id="17_amlcg"]
+[ext_resource type="Texture2D" uid="uid://xum7ufyisah0" path="res://assets/UI - border Red.png" id="18_d7rgo"]
 [ext_resource type="Script" uid="uid://d0awwmw8t4h1p" path="res://main/UI/speedometer.gd" id="18_ue0mw"]
 [ext_resource type="Texture2D" uid="uid://ctglrm0ho8y6l" path="res://assets/UI - a - bg.png" id="19_vqjab"]
+[ext_resource type="Texture2D" uid="uid://cdqnt8v6memap" path="res://assets/UI - border base.png" id="19_yjufm"]
 [ext_resource type="Texture2D" uid="uid://che7egggydy6c" path="res://assets/UI - a - fore.png" id="20_h3axc"]
 [ext_resource type="Texture2D" uid="uid://r17b0gwrdrvc" path="res://assets/UI - a - border.png" id="21_d7rgo"]
 [ext_resource type="Script" uid="uid://ctdcob0eijeys" path="res://main/accelerometer.gd" id="22_amlcg"]
@@ -86,7 +87,7 @@ break_speed_decay = 0.95
 bullet_manager = NodePath("../BulletManager")
 
 [node name="Camera2D" type="Camera2D" parent="GameLayer/world/player_ship" unique_id=1202193931]
-zoom = Vector2(0.6, 0.6)
+zoom = Vector2(0.2, 0.2)
 process_callback = 0
 limit_enabled = false
 position_smoothing_enabled = true
@@ -146,10 +147,14 @@ scale = Vector2(4.13, 4.03)
 
 [node name="Border" type="Sprite2D" parent="UI/ScalingContainer" unique_id=1797648217]
 position = Vector2(139.5, 80.5)
-texture = ExtResource("17_amlcg")
+texture = ExtResource("18_d7rgo")
+
+[node name="Border-base" type="Sprite2D" parent="UI/ScalingContainer" unique_id=625522196]
+position = Vector2(139.5, 84.75)
+texture = ExtResource("19_yjufm")
 
 [node name="Speedometer" type="Node2D" parent="UI/ScalingContainer" unique_id=319360370 node_paths=PackedStringArray("player")]
-position = Vector2(139.5, 80.5)
+position = Vector2(139.46732, 79.90074)
 script = ExtResource("18_ue0mw")
 player = NodePath("../../../GameLayer/world/player_ship")
 
@@ -171,7 +176,7 @@ texture = ExtResource("20_h3axc")
 texture = ExtResource("21_d7rgo")
 
 [node name="Accelerometer" type="Node2D" parent="UI/ScalingContainer" unique_id=77890013 node_paths=PackedStringArray("player")]
-position = Vector2(139.5, 80.5)
+position = Vector2(139.5, 80)
 script = ExtResource("22_amlcg")
 player = NodePath("../../../GameLayer/world/player_ship")
 
@@ -193,13 +198,19 @@ texture = ExtResource("23_phifs")
 texture = ExtResource("24_cgvj2")
 
 [node name="EnergyBar" type="Node2D" parent="UI/ScalingContainer" unique_id=1044980450]
-position = Vector2(139.5, 80.5)
+position = Vector2(139.5, 83.72)
 script = ExtResource("25_t1yuj")
 resourceManager = ExtResource("6_grrlh")
 
 [node name="EnergyBar_1" type="Sprite2D" parent="UI/ScalingContainer/EnergyBar" unique_id=1308075912]
 clip_children = 1
 texture = ExtResource("26_4pcu1")
+
+[node name="BarColourFill2" type="Sprite2D" parent="UI/ScalingContainer/EnergyBar/EnergyBar_1" unique_id=1286154274]
+modulate = Color(0.060544915, 0.118139885, 0.2504919, 1)
+position = Vector2(-31.267548, 56.22457)
+scale = Vector2(0.5111043, 0.21393931)
+texture = ExtResource("27_7eg6f")
 
 [node name="BarColourFill" type="Sprite2D" parent="UI/ScalingContainer/EnergyBar/EnergyBar_1" unique_id=1093666523]
 modulate = Color(0, 0.38039216, 1, 1)
@@ -221,6 +232,12 @@ resourceManager = ExtResource("6_grrlh")
 [node name="HealthBar_1" type="Sprite2D" parent="UI/ScalingContainer/HealthBar" unique_id=1994517073]
 clip_children = 1
 texture = ExtResource("31_omb8t")
+
+[node name="BarColourFill2" type="Sprite2D" parent="UI/ScalingContainer/HealthBar/HealthBar_1" unique_id=1251748576]
+modulate = Color(0.25, 0.060000002, 0.060000002, 1)
+position = Vector2(-27.63559, 72.10545)
+scale = Vector2(0.5111043, 0.21393931)
+texture = ExtResource("27_7eg6f")
 
 [node name="BarColourFill" type="Sprite2D" parent="UI/ScalingContainer/HealthBar/HealthBar_1" unique_id=625472674]
 modulate = Color(1, 0, 0, 1)

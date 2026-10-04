@@ -185,7 +185,44 @@ func _update_ship_targets(flock : FlockInfo, delta : float):
 		v = v.normalized() * (info.node.max_speed)
 		info.target_velocity = v
 
+func _avoid_obstacles(info : EnemyInfo, delta : float):
+	var desired_velocity = info.target_velocity
+	
+	var state_space = info.node.get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(
+		info.node.global_position, 
+		info.node.global_position + desired_velocity.normalized() * 300,
+		1
+		)
+	var result = state_space.intersect_ray(query)
+	
+	if result:
+		print("avoiding: ", result["collider"].name)
+		var avoid = (result["position"] - info.node.global_position).normalized()
+		info.target_velocity = desired_velocity - avoid * avoid.dot(desired_velocity)
+		info.target_velocity = info.target_velocity.normalized() * desired_velocity.length()
+	#var curv = info.node.velocity
+	#var desired_velocity = info.target_velocity
+	#
+	#var state_space = info.node.get_world_2d().direct_space_state
+	#var query = PhysicsRayQueryParameters2D.create(
+		#info.node.global_position, 
+		#info.node.global_position + curv * 0.5,
+		#1
+		#)
+	#var result = state_space.intersect_ray(query)
+	#
+	#if result:
+		#print("avoiding: ", result["collider"].name)
+		#var avoid = (result["position"] - info.node.global_position).normalized()
+		#info.node.velocity = curv - avoid * avoid.dot(curv)
+		#info.node.velocity = info.node.velocity.normalized() * curv.length()
+		#info.target_velocity = desired_velocity - avoid * avoid.dot(desired_velocity)
+		#info.target_velocity = info.target_velocity.normalized() * desired_velocity.length()
+		
+
 func _move_ship(info : EnemyInfo, delta : float):
+	_avoid_obstacles(info, delta)
 	var desired_velocity = info.target_velocity
 	
 	var accel = (desired_velocity - info.node.velocity).limit_length(info.node.max_acceleration)
