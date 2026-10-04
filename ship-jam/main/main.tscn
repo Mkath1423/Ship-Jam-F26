@@ -42,6 +42,14 @@
 [ext_resource type="Texture2D" uid="uid://fxkjydkksmth" path="res://assets/UI - pause - pause.png" id="35_3le5t"]
 [ext_resource type="FontFile" uid="uid://xaioqug64ufr" path="res://assets/BoldsPixels.ttf" id="38_d7rgo"]
 [ext_resource type="LabelSettings" uid="uid://dr7rt3ufvw85i" path="res://lexie/hud_large.tres" id="39_yjufm"]
+[ext_resource type="Script" uid="uid://bhjervnge61r3" path="res://main/warnings/alart_manager.gd" id="40_cgvj2"]
+[ext_resource type="Texture2D" uid="uid://drfy34gydols4" path="res://assets/Title Screen.png" id="43_t1yuj"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4pcu1"]
+random_pitch = 1.067942
+random_volume_offset_db = 1.03
+streams_count = 1
+stream_0/stream = ExtResource("10_cgvj2")
 
 [sub_resource type="LabelSettings" id="LabelSettings_yjufm"]
 font = ExtResource("38_d7rgo")
@@ -59,6 +67,8 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_mahgt"]
 font = ExtResource("38_d7rgo")
 font_size = 72
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Main2" type="Node2D" unique_id=203743139]
 script = ExtResource("1_bsumw")
@@ -99,6 +109,17 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_4pcu1")
 
+[node name="GameBackground6" type="ColorRect" parent="BackgroundLayer" unique_id=1561856252]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.1867676
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02745098, 0.03529412, 0.06666667, 0.21568628)
+
 [node name="GameBackground3" type="TextureRect" parent="BackgroundLayer" unique_id=766460352]
 texture_filter = 1
 anchors_preset = 15
@@ -110,11 +131,21 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_7eg6f")
 
+[node name="ScalingContainer" type="Node2D" parent="BackgroundLayer" unique_id=209999759]
+scale = Vector2(4.13, 4.03)
+
+[node name="Border" type="Sprite2D" parent="BackgroundLayer/ScalingContainer" unique_id=1556994686]
+position = Vector2(139.46732, 80.39702)
+texture = ExtResource("18_d7rgo")
+
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=997787331]
+visible = false
 follow_viewport_enabled = true
 
-[node name="WaveScheduler" parent="GameLayer" unique_id=1750741460 node_paths=PackedStringArray("enemy_controller", "banner", "objective") instance=ExtResource("12_h3axc")]
+[node name="WaveScheduler" parent="GameLayer" unique_id=1750741460 node_paths=PackedStringArray("enemy_controller", "chunk_manager", "player", "banner", "objective") instance=ExtResource("12_h3axc")]
 enemy_controller = NodePath("../EnemyController")
+chunk_manager = NodePath("../world/ChunkManager")
+player = NodePath("../world/player_ship")
 banner = NodePath("../../UI/Control/MarginContainer/Banner")
 objective = NodePath("../../UI/Control/MarginContainer2/Objective")
 
@@ -131,7 +162,7 @@ cohesion_factor = 1.0
 metadata/_custom_type_script = "uid://gg7s7t6k2dtm"
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="GameLayer/EnemyController" unique_id=340087078]
-stream = ExtResource("10_cgvj2")
+stream = SubResource("AudioStreamRandomizer_4pcu1")
 max_polyphony = 400
 
 [node name="world" type="Node2D" parent="GameLayer" unique_id=647259127]
@@ -242,13 +273,13 @@ texture = ExtResource("26_4pcu1")
 
 [node name="BarColourFill2" type="Sprite2D" parent="UI/ScalingContainer/EnergyBar/EnergyBar_1" unique_id=1286154274]
 modulate = Color(0.060544915, 0.118139885, 0.2504919, 1)
-position = Vector2(-31.267548, 56.22457)
+position = Vector2(-30.299025, 63.908306)
 scale = Vector2(0.5111043, 0.21393931)
 texture = ExtResource("27_7eg6f")
 
 [node name="BarColourFill" type="Sprite2D" parent="UI/ScalingContainer/EnergyBar/EnergyBar_1" unique_id=1093666523]
 modulate = Color(0, 0.38039216, 1, 1)
-position = Vector2(-31.267548, 56.22458)
+position = Vector2(-30.783293, 64.404594)
 scale = Vector2(0.5111043, 0.21393931)
 texture = ExtResource("27_7eg6f")
 
@@ -275,7 +306,7 @@ texture = ExtResource("27_7eg6f")
 
 [node name="BarColourFill" type="Sprite2D" parent="UI/ScalingContainer/HealthBar/HealthBar_1" unique_id=625472674]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(-32.720352, 71.85732)
+position = Vector2(-32.720337, 73.81114)
 scale = Vector2(0.544, 0.18948783)
 texture = ExtResource("27_7eg6f")
 
@@ -286,6 +317,7 @@ texture = ExtResource("32_k5bb4")
 texture = ExtResource("33_028el")
 
 [node name="Pause" type="Node2D" parent="UI/ScalingContainer" unique_id=1452430850]
+visible = false
 position = Vector2(139.5, 80.5)
 
 [node name="Pause_1" type="Sprite2D" parent="UI/ScalingContainer/Pause" unique_id=120934722]
@@ -293,6 +325,10 @@ texture = ExtResource("34_yyc07")
 
 [node name="Pause_2" type="Sprite2D" parent="UI/ScalingContainer/Pause" unique_id=1314560097]
 texture = ExtResource("35_3le5t")
+
+[node name="alert_manager" type="Node2D" parent="UI" unique_id=46620368]
+physics_interpolation_mode = 2
+script = ExtResource("40_cgvj2")
 
 [node name="Control" type="Control" parent="UI" unique_id=942399114]
 layout_mode = 3
@@ -318,7 +354,7 @@ label_settings = ExtResource("39_yjufm")
 layout_mode = 1
 offset_right = 743.0
 offset_bottom = 191.0
-theme_override_constants/margin_left = 104
+theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = -89
 
 [node name="Objective" type="Label" parent="UI/Control/MarginContainer2" unique_id=1327099762]
@@ -329,33 +365,54 @@ label_settings = SubResource("LabelSettings_yjufm")
 [node name="GameStartLayer" type="CanvasLayer" parent="." unique_id=1996391416]
 visible = false
 
-[node name="CenterContainer" type="CenterContainer" parent="GameStartLayer" unique_id=1715856033]
+[node name="GameBackground5" type="TextureRect" parent="GameStartLayer" unique_id=355455926]
+texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 8
+texture = ExtResource("43_t1yuj")
+expand_mode = 2
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameStartLayer/CenterContainer" unique_id=876739533]
-layout_mode = 2
+[node name="ScalingContainer" type="Node2D" parent="GameStartLayer" unique_id=1204155344]
+scale = Vector2(4.13, 4.03)
 
-[node name="Label" type="Label" parent="GameStartLayer/CenterContainer/VBoxContainer" unique_id=416678010]
+[node name="Border" type="Sprite2D" parent="GameStartLayer/ScalingContainer" unique_id=757382323]
+position = Vector2(139.46732, 80.39702)
+texture = ExtResource("18_d7rgo")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameStartLayer" unique_id=1113031690]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameStartLayer/MarginContainer" unique_id=876739533]
 layout_mode = 2
-text = "SHIP GAME"
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="GameStartLayer/MarginContainer/VBoxContainer" unique_id=416678010]
+layout_mode = 2
+text = "ORIBITAL
+STRIKE"
 label_settings = SubResource("LabelSettings_vqkdg")
-horizontal_alignment = 1
 
-[node name="StartGameButton" type="Button" parent="GameStartLayer/CenterContainer/VBoxContainer" unique_id=961860294]
+[node name="StartGameButton" type="Button" parent="GameStartLayer/MarginContainer/VBoxContainer" unique_id=961860294]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/outline_size = 10
+size_flags_horizontal = 0
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("38_d7rgo")
 theme_override_font_sizes/font_size = 72
 text = "START"
+flat = true
 
 [node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=540281078]
-visible = false
 
 [node name="CenterContainer" type="CenterContainer" parent="GameOverLayer" unique_id=1426563626]
 anchors_preset = 15
@@ -383,13 +440,15 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("38_d7rgo")
 theme_override_font_sizes/font_size = 72
 text = "MENU"
+flat = true
 
 [connection signal="end" from="GameLayer/world" to="GameLayer/WaveScheduler" method="_on_main_end"]
 [connection signal="end" from="GameLayer/world" to="GameLayer/EnemyController" method="_on_main_end"]
 [connection signal="restart" from="GameLayer/world" to="GameLayer/WaveScheduler" method="_on_main_restart"]
 [connection signal="swtch_to_game_over" from="GameLayer/world" to="." method="game_over"]
-[connection signal="pressed" from="GameStartLayer/CenterContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GameStartLayer/MarginContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GameOverLayer/CenterContainer/VBoxContainer/GoToMenuButton" to="." method="_on_go_to_menu_button_pressed"]

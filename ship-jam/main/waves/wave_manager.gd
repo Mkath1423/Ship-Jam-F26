@@ -9,12 +9,16 @@ var current_round_type : RoundType = RoundType.IDLE
 enum RoundType { IDLE, SURVIVE }
 
 @export var enemy_controller : EnemyController 
+@export var chunk_manager : ChunkManager
+@export var player : Node2D 
+
 @onready var round_timer : Timer = $RoundTimer
 @onready var wave_timer : Timer = $WaveTimer
 @onready var count_down_timer : Timer = $CountDownTimer
 
 @export var banner : Label 
 @export var objective : Label 
+
 
 func _ready() -> void:
 	round_timer.timeout.connect(round_over)
@@ -143,8 +147,17 @@ func _wave_timer_timeout():
 	wave_timer.start(5)
 	
 func _spawn_chasers_near_player(max_count : int):
+	
+	var dir = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+	if dir == Vector2.ZERO:
+		dir = Vector2.LEFT
+	
+	var start_pos = player.global_position + dir * 2500
+	
+	
 	var flock : EnemyController.FlockInfo = enemy_controller._awaken_flock(
-		enemy_controller._spawn_points_in_rect(Rect2(-200, -200, 100, 100), 6, 6, max_count),
+		enemy_controller._spawn_points_in_rect(Rect2(start_pos.x, start_pos.y, 100, 100), 
+			ceili(sqrt(max_count))+ 2, ceili(sqrt(max_count)) + 2, max_count),
 		enemy_controller._awaken_enemy)
 		
 	flock.state = EnemyController.FlockState.IDLE

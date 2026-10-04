@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cqwjcoabnm356"]
+
+[ext_resource type="Texture2D" uid="uid://b0lkkg35jobq7" path="res://assets/UI - exclaim bigger.png" id="1_j2d7p"]
+
+[node name="Alert" type="Sprite2D" unique_id=268830933]
+scale = Vector2(10, 10)
+texture = ExtResource("1_j2d7p")

@@ -68,10 +68,11 @@ func _spawn_points_in_rect(spawning_boundry : Rect2, width : int, height : int, 
 		var collider : PhysicsBody2D = res["collider"] 
 		var o = collider.shape_find_owner(res["shape"])
 		var shape = collider.shape_owner_get_shape(o, res["shape"]) as Shape2D
-		var rect = shape.get_rect()
-		rect.position -= spawning_boundry.size
-		rect.size += 2 * spawning_boundry.size
-		bounding_boxes.append(rect)
+		if shape != null:
+			var rect = shape.get_rect()
+			rect.position -= spawning_boundry.size
+			rect.size += 2 * spawning_boundry.size
+			bounding_boxes.append(rect)
 	
 	var out : Array[Vector2] = []
 	

@@ -16,6 +16,13 @@ radius = 37.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_8oc6l"]
 radius = 28.0
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1exhs"]
+playback_mode = 1
+random_pitch = 1.122462
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("4_t04cl")
+
 [node name="player_ship" type="CharacterBody2D" unique_id=1037649546]
 collision_layer = 2
 script = ExtResource("1_cplq0")
@@ -112,7 +119,7 @@ collision_mask = 5
 shape = SubResource("CircleShape2D_8oc6l")
 
 [node name="LaserShot1" type="AudioStreamPlayer" parent="." unique_id=350168176]
-stream = ExtResource("4_t04cl")
+stream = SubResource("AudioStreamRandomizer_1exhs")
 
 [node name="LaserShot2" type="AudioStreamPlayer" parent="." unique_id=1000458353]
 stream = ExtResource("4_t04cl")
