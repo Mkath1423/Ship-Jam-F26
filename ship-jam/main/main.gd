@@ -2,7 +2,7 @@ extends Node2D
 
 @export var resourceManager : ResourceManager
 
-@onready var wave_manager = $GameLayer/world/WaveScheduler
+@onready var wave_manager = $GameLayer/WaveScheduler
 @onready var rounds_cleared_ui = $GameOverLayer/CenterContainer/VBoxContainer/Rounds
 
 enum screens { GameStart, Game, GameOver }
@@ -16,11 +16,13 @@ func _hide_all():
 	$UI.hide()
 	$GameStartLayer.hide()
 	$GameOverLayer.hide()
+	$GameLayer.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _show_game_screen():
 	$BackgroundLayer.show()
 	$GameLayer.show()
 	$UI.show()
+	$GameLayer.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func set_screen(screen : screens):
