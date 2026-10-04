@@ -10,9 +10,11 @@ size = Vector2(13, 38)
 size = Vector2(14, 17)
 
 [node name="Satellite" type="RigidBody2D" unique_id=1165367634]
+gravity_scale = 0.0
 script = ExtResource("1_75xyr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=515852874]
+scale = Vector2(4, 4)
 texture = ExtResource("2_ifkpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1655164217]

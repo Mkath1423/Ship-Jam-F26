@@ -1,11 +1,85 @@
 [gd_scene format=3 uid="uid://bblfx6md03jbv"]
 
 [ext_resource type="Script" uid="uid://3kwvj50ewo7y" path="res://main/UI/ui.gd" id="1_gr7po"]
-[ext_resource type="Texture2D" uid="uid://cgbx1h70abklq" path="res://assets/image.webp" id="1_obgjq"]
+[ext_resource type="Texture2D" uid="uid://cvqrwt7peubue" path="res://assets/UI - border.png" id="2_gr7po"]
+[ext_resource type="Texture2D" uid="uid://ctglrm0ho8y6l" path="res://assets/UI - a - bg.png" id="3_us4et"]
+[ext_resource type="Texture2D" uid="uid://che7egggydy6c" path="res://assets/UI - a - fore.png" id="4_hj0xa"]
+[ext_resource type="Texture2D" uid="uid://r17b0gwrdrvc" path="res://assets/UI - a - border.png" id="5_rojxn"]
+[ext_resource type="Texture2D" uid="uid://cxxys5w48ekah" path="res://assets/UI - b - bg.png" id="6_44vjo"]
+[ext_resource type="Texture2D" uid="uid://ce3utfoioxfya" path="res://assets/UI - b - fore.png" id="7_r533m"]
+[ext_resource type="Texture2D" uid="uid://i4cwlvepcoyb" path="res://assets/UI - b - border.png" id="8_m8m5x"]
+[ext_resource type="Texture2D" uid="uid://cahvfot8e1k07" path="res://assets/UI - energy - back.png" id="9_c46b8"]
+[ext_resource type="Texture2D" uid="uid://dh1hducac4rha" path="res://assets/UI - energy - border.png" id="10_nnmwc"]
+[ext_resource type="Texture2D" uid="uid://dtpvo282io2au" path="res://assets/UI - energy - sym.png" id="11_8bm0k"]
+[ext_resource type="Texture2D" uid="uid://c3ehbwvp8gafr" path="res://assets/UI - health- back.png" id="12_dtfop"]
+[ext_resource type="Texture2D" uid="uid://b3n0gsbaga1e7" path="res://assets/UI - health - border.png" id="13_n6vkc"]
+[ext_resource type="Texture2D" uid="uid://dmhm7isxouko0" path="res://assets/UI - health - sym.png" id="14_qo48t"]
+[ext_resource type="Texture2D" uid="uid://dbjr50ubr1t5r" path="res://assets/UI - pause - back.png" id="15_8bm0k"]
+[ext_resource type="Texture2D" uid="uid://fxkjydkksmth" path="res://assets/UI - pause - pause.png" id="16_dtfop"]
 
 [node name="Ui" type="CanvasLayer" unique_id=1415882682]
 script = ExtResource("1_gr7po")
 
-[node name="StaticUI" type="Sprite2D" parent="." unique_id=455796238]
-position = Vector2(581, 311)
-texture = ExtResource("1_obgjq")
+[node name="Node2D" type="Node2D" parent="." unique_id=1714326543]
+scale = Vector2(4.13, 4.03)
+
+[node name="Border" type="Sprite2D" parent="Node2D" unique_id=455796238]
+position = Vector2(139.5, 80.5)
+texture = ExtResource("2_gr7po")
+
+[node name="Speedometer" type="Node2D" parent="Node2D" unique_id=1841445826]
+position = Vector2(139.5, 80.5)
+
+[node name="Speedometer_1" type="Sprite2D" parent="Node2D/Speedometer" unique_id=2131264958]
+texture = ExtResource("3_us4et")
+
+[node name="Speedometer_2" type="Sprite2D" parent="Node2D/Speedometer" unique_id=1861541075]
+texture = ExtResource("4_hj0xa")
+
+[node name="Speedometer_3" type="Sprite2D" parent="Node2D/Speedometer" unique_id=1578121546]
+texture = ExtResource("5_rojxn")
+
+[node name="Accelerometer" type="Node2D" parent="Node2D" unique_id=1398748555]
+position = Vector2(139.5, 80.5)
+
+[node name="Accelerometer_1" type="Sprite2D" parent="Node2D/Accelerometer" unique_id=1125295212]
+texture = ExtResource("6_44vjo")
+
+[node name="Accelerometer_2" type="Sprite2D" parent="Node2D/Accelerometer" unique_id=1273018355]
+texture = ExtResource("7_r533m")
+
+[node name="Accelerometer_3" type="Sprite2D" parent="Node2D/Accelerometer" unique_id=1598809516]
+texture = ExtResource("8_m8m5x")
+
+[node name="EnergyBar" type="Node2D" parent="Node2D" unique_id=1123605063]
+position = Vector2(139.5, 80.5)
+
+[node name="EnergyBar_1" type="Sprite2D" parent="Node2D/EnergyBar" unique_id=95081962]
+texture = ExtResource("9_c46b8")
+
+[node name="EnergyBar_2" type="Sprite2D" parent="Node2D/EnergyBar" unique_id=1142743171]
+texture = ExtResource("10_nnmwc")
+
+[node name="EnergyBar_3" type="Sprite2D" parent="Node2D/EnergyBar" unique_id=1068726982]
+texture = ExtResource("11_8bm0k")
+
+[node name="HealthBar" type="Node2D" parent="Node2D" unique_id=1114427889]
+position = Vector2(139.5, 80.5)
+
+[node name="HealthBar_1" type="Sprite2D" parent="Node2D/HealthBar" unique_id=513602487]
+texture = ExtResource("12_dtfop")
+
+[node name="HealthBar_2" type="Sprite2D" parent="Node2D/HealthBar" unique_id=290883451]
+texture = ExtResource("13_n6vkc")
+
+[node name="HealthBar_3" type="Sprite2D" parent="Node2D/HealthBar" unique_id=456646115]
+texture = ExtResource("14_qo48t")
+
+[node name="Pause" type="Node2D" parent="Node2D" unique_id=858182053]
+position = Vector2(139.5, 80.5)
+
+[node name="Pause_1" type="Sprite2D" parent="Node2D/Pause" unique_id=1711782700]
+texture = ExtResource("15_8bm0k")
+
+[node name="Pause_2" type="Sprite2D" parent="Node2D/Pause" unique_id=1081518298]
+texture = ExtResource("16_dtfop")

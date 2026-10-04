@@ -7,11 +7,14 @@
 radius = 5.0
 
 [node name="AsteroidSmall" type="RigidBody2D" unique_id=1827357198]
+gravity_scale = 0.0
 script = ExtResource("1_fky6r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1932313081]
-position = Vector2(-10, 3)
+position = Vector2(-103, 30)
+scale = Vector2(4, 4)
 texture = ExtResource("2_arhul")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1032215805]
+scale = Vector2(10, 10)
 shape = SubResource("CircleShape2D_4gjug")

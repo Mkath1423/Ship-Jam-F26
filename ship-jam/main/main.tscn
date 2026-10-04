@@ -5,23 +5,24 @@
 [ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="2_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="2_pjrb6"]
 [ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_xwkvk"]
-[ext_resource type="Texture2D" uid="uid://cgbx1h70abklq" path="res://assets/image.webp" id="3_fwcvl"]
+[ext_resource type="Texture2D" uid="uid://ciq6f5ik5sqji" path="res://assets/Background (draft).png" id="3_5xyti"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_c651c"]
 [ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="5_3wy1v"]
 [ext_resource type="Resource" uid="uid://c1k77bq5y0wvi" path="res://james/ResourceManager.tres" id="6_grrlh"]
 [ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="7_67ri8"]
-[ext_resource type="Script" uid="uid://d28v0s2l3l1i2" path="res://main/obstacles/asteroid_like.gd" id="7_fwcvl"]
 [ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="8_grrlh"]
-[ext_resource type="Texture2D" uid="uid://c0mbhb0g3oqh6" path="res://assets/Sprite - Aster3.png" id="8_na0o7"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
-radius = 81.3019
+[ext_resource type="PackedScene" uid="uid://dy03bil1igvm7" path="res://main/obstacles/asteroid_big.tscn" id="11_5xyti"]
+[ext_resource type="PackedScene" uid="uid://bblfx6md03jbv" path="res://main/UI/UI.tscn" id="11_bsumw"]
+[ext_resource type="PackedScene" uid="uid://db8v8tki32l23" path="res://main/obstacles/asteroid_medium.tscn" id="12_n3o0a"]
+[ext_resource type="PackedScene" uid="uid://o78kybfk8g5h" path="res://main/obstacles/asteroid_small.tscn" id="13_s758e"]
+[ext_resource type="PackedScene" uid="uid://bwipaqlsy2cth" path="res://main/obstacles/satellite.tscn" id="14_4hmqs"]
 
 [node name="Main2" type="Node2D" unique_id=203743139]
 script = ExtResource("1_bsumw")
 resourceManager = ExtResource("6_grrlh")
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=367381247]
+visible = false
 
 [node name="GameBackground" type="TextureRect" parent="BackgroundLayer" unique_id=133749328]
 texture_filter = 1
@@ -32,28 +33,13 @@ offset_right = 100.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_fwcvl")
+texture = ExtResource("3_5xyti")
 
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=997787331]
 visible = false
 follow_viewport_enabled = true
 
 [node name="world" type="Node2D" parent="GameLayer" unique_id=647259127]
-
-[node name="RigidBody2D" type="RigidBody2D" parent="GameLayer/world" unique_id=123223667]
-position = Vector2(286, 132)
-mass = 10.0
-gravity_scale = 0.0
-angular_damp = 1.0
-script = ExtResource("7_fwcvl")
-
-[node name="Icon" type="Sprite2D" parent="GameLayer/world/RigidBody2D" unique_id=1804569158]
-position = Vector2(-8.999998, -76.99999)
-scale = Vector2(8.6484375, 8.6484375)
-texture = ExtResource("8_na0o7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameLayer/world/RigidBody2D" unique_id=895099602]
-shape = SubResource("CircleShape2D_vqkdg")
 
 [node name="player_ship" parent="GameLayer/world" unique_id=1037649546 node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_pjrb6")]
 position = Vector2(539, 326)
@@ -100,6 +86,20 @@ seperation_factor = 10.0
 alignment_factor = 3.0
 cohesion_factor = 1.0
 metadata/_custom_type_script = "uid://gg7s7t6k2dtm"
+
+[node name="AsteroidBig" parent="GameLayer/world" unique_id=734619674 instance=ExtResource("11_5xyti")]
+position = Vector2(576, 187)
+
+[node name="AsteroidMedium" parent="GameLayer/world" unique_id=448815807 instance=ExtResource("12_n3o0a")]
+position = Vector2(700, 105)
+
+[node name="AsteroidSmall" parent="GameLayer/world" unique_id=1827357198 instance=ExtResource("13_s758e")]
+position = Vector2(759, 364)
+
+[node name="Satellite" parent="GameLayer/world" unique_id=1165367634 instance=ExtResource("14_4hmqs")]
+position = Vector2(825, 197)
+
+[node name="Ui" parent="GameLayer" unique_id=1415882682 instance=ExtResource("11_bsumw")]
 
 [node name="GameStartLayer" type="CanvasLayer" parent="." unique_id=1996391416]
 
