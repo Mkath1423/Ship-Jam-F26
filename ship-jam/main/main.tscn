@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://de4gktyjse2jh" path="res://main/waves/wave_scheduler.tscn" id="12_h3axc"]
 [ext_resource type="Texture2D" uid="uid://xum7ufyisah0" path="res://assets/UI - border Red.png" id="18_d7rgo"]
 [ext_resource type="Script" uid="uid://d0awwmw8t4h1p" path="res://main/UI/speedometer.gd" id="18_ue0mw"]
+[ext_resource type="AudioStream" uid="uid://02bdv2apyhrm" path="res://assets/musicTrack.mp3" id="19_t1yuj"]
 [ext_resource type="Texture2D" uid="uid://ctglrm0ho8y6l" path="res://assets/UI - a - bg.png" id="19_vqjab"]
 [ext_resource type="Texture2D" uid="uid://cdqnt8v6memap" path="res://assets/UI - border base.png" id="19_yjufm"]
 [ext_resource type="Texture2D" uid="uid://che7egggydy6c" path="res://assets/UI - a - fore.png" id="20_h3axc"]
@@ -175,6 +176,10 @@ script = ExtResource("2_kfbq2")
 bullet = ExtResource("5_3wy1v")
 railgun_beam = ExtResource("2_0i4oc")
 world = NodePath("..")
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="GameLayer" unique_id=1623309903]
+stream = ExtResource("19_t1yuj")
+autoplay = true
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=272313975]
 
