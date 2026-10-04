@@ -7,11 +7,12 @@ func _on_body_entered(body: Node) -> void:
 	print("ROCK HIT A ", body.name)
 
 func teleport_by(offset : Vector2):
-	teleport_requested = true
+	teleport_requested = false
 	teleport_offset = offset
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if teleport_requested:
+		print("processed tele")
 		state.linear_velocity = Vector2.ZERO
 		state.angular_velocity = 0
 		teleport_requested = false

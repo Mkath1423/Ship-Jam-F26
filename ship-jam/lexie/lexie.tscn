@@ -1,19 +1,17 @@
 [gd_scene format=3 uid="uid://cwmts2y63knh"]
 
 [ext_resource type="Texture2D" uid="uid://fei1tbayus41" path="res://lexie/space-bg.jpg" id="1_cq8bq"]
-[ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_mu62u"]
-[ext_resource type="Script" uid="uid://ktdfb8idap2" path="res://lexie/rigid_body_2d.gd" id="2_ykd4u"]
+[ext_resource type="Script" uid="uid://ss7jlsr73ex4" path="res://lexie/world.gd" id="1_mplub"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="3_1ror0"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_40pup"]
-[ext_resource type="PackedScene" uid="uid://cba6a2xvhuisy" path="res://lexie/level/chunks/test_chunk_1000.tscn" id="6_hgeq3"]
-[ext_resource type="Script" uid="uid://bfrafaw0h17rm" path="res://lexie/level/chunk_manager.gd" id="6_jmjeg"]
 [ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="6_mplub"]
 [ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="7_hgeq3"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ykd4u"]
-radius = 81.3019
+[ext_resource type="Script" uid="uid://cviyhb4smmtna" path="res://lexie/waves/wave_manager.gd" id="8_b7efe"]
+[ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="9_hgeq3"]
+[ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="10_jmjeg"]
 
 [node name="Main" type="Node2D" unique_id=203743139]
+script = ExtResource("1_mplub")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=367381247]
 
@@ -30,30 +28,6 @@ texture = ExtResource("1_cq8bq")
 follow_viewport_enabled = true
 
 [node name="world" type="Node2D" parent="CanvasLayer2" unique_id=1357831140]
-
-[node name="ChunkManager" type="Node2D" parent="CanvasLayer2/world" unique_id=1581835725 node_paths=PackedStringArray("player")]
-physics_interpolation_mode = 2
-script = ExtResource("6_jmjeg")
-player = NodePath("../player_ship")
-test_check = ExtResource("6_hgeq3")
-chunk_dims = Vector2(3000, 3000)
-chunk_load_distance = Vector2i(2, 2)
-world_dimentions = Vector2i(5, 5)
-
-[node name="RigidBody2D" type="RigidBody2D" parent="CanvasLayer2/world" unique_id=75935433]
-visible = false
-position = Vector2(0, -3)
-mass = 10.0
-gravity_scale = 0.0
-custom_integrator = true
-angular_damp = 1.0
-script = ExtResource("2_ykd4u")
-
-[node name="Icon" type="Sprite2D" parent="CanvasLayer2/world/RigidBody2D" unique_id=435765569]
-texture = ExtResource("2_mu62u")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer2/world/RigidBody2D" unique_id=1166989056]
-shape = SubResource("CircleShape2D_ykd4u")
 
 [node name="player_ship" parent="CanvasLayer2/world" unique_id=1037649546 node_paths=PackedStringArray("bullet_manager") instance=ExtResource("3_1ror0")]
 position = Vector2(539, 326)
@@ -87,4 +61,25 @@ script = ExtResource("6_mplub")
 bullet = ExtResource("7_hgeq3")
 world = NodePath("../world")
 
-[connection signal="body_entered" from="CanvasLayer2/world/RigidBody2D" to="CanvasLayer2/world/RigidBody2D" method="_on_body_entered"]
+[node name="WaveScheduler" type="Node" parent="CanvasLayer2" unique_id=1230578872]
+script = ExtResource("8_b7efe")
+
+[node name="RoundTimer" type="Timer" parent="CanvasLayer2/WaveScheduler" unique_id=1706866175]
+
+[node name="WaveTimer" type="Timer" parent="CanvasLayer2/WaveScheduler" unique_id=536958172]
+wait_time = 10.0
+
+[node name="EnemyController" type="Node" parent="CanvasLayer2" unique_id=716559546 node_paths=PackedStringArray("world", "player")]
+script = ExtResource("9_hgeq3")
+basic_enemy_scene = ExtResource("10_jmjeg")
+world = NodePath("../world")
+player = NodePath("../world/player_ship")
+target_factor = 5.0
+seperation_factor = 10.0
+alignment_factor = 3.0
+cohesion_factor = 1.0
+metadata/_custom_type_script = "uid://gg7s7t6k2dtm"
+
+[connection signal="end" from="." to="CanvasLayer2/WaveScheduler" method="_on_main_end"]
+[connection signal="end" from="." to="CanvasLayer2/EnemyController" method="_on_main_restart"]
+[connection signal="restart" from="." to="CanvasLayer2/WaveScheduler" method="_on_main_restart"]
