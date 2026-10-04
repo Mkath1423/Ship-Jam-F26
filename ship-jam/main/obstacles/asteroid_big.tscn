@@ -4,15 +4,17 @@
 [ext_resource type="Script" uid="uid://d28v0s2l3l1i2" path="res://main/obstacles/asteroid_like.gd" id="1_cpyvv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gjug"]
+radius = 37.0
 
 [node name="AsteroidBig" type="RigidBody2D" unique_id=734619674]
+mass = 7.0
 gravity_scale = 0.0
 script = ExtResource("1_cpyvv")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1509811818]
-position = Vector2(-1, -9)
 scale = Vector2(4, 4)
 texture = ExtResource("1_6wymq")
+offset = Vector2(-1, -8.75)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=428141781]
 shape = SubResource("CircleShape2D_4gjug")

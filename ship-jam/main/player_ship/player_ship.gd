@@ -103,7 +103,8 @@ func _physics_process(delta: float) -> void:
 	
 	acceleration = (velocity - prev_velocity) * delta
 	var theta = sin(velocity.angle_to(acceleration))
-	energy_gain_rate = theta * theta * acceleration.length() * energy_gain_factor
+	var acceleration_for_energy = min(acceleration.length(), 0.4)
+	energy_gain_rate = theta * theta * acceleration_for_energy * energy_gain_factor
 	if energy_gain_enabled:
 		resourceManager.attempt_add_energy(energy_gain_rate)
 	
