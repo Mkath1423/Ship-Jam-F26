@@ -7,7 +7,7 @@ var current_round_type : RoundType = RoundType.IDLE
 
 enum RoundType { IDLE, SURVIVE }
 
-@onready var enemy_controller : EnemyController = $"../EnemyController"
+@export var enemy_controller : EnemyController 
 @onready var round_timer : Timer = $RoundTimer
 @onready var wave_timer : Timer = $WaveTimer
 

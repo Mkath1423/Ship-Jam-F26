@@ -39,6 +39,14 @@
 [ext_resource type="Texture2D" uid="uid://dbjr50ubr1t5r" path="res://assets/UI - pause - back.png" id="34_yyc07"]
 [ext_resource type="Texture2D" uid="uid://fxkjydkksmth" path="res://assets/UI - pause - pause.png" id="35_3le5t"]
 [ext_resource type="FontFile" uid="uid://xaioqug64ufr" path="res://assets/BoldsPixels.ttf" id="38_d7rgo"]
+[ext_resource type="LabelSettings" uid="uid://dr7rt3ufvw85i" path="res://lexie/hud_large.tres" id="39_yjufm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yjufm"]
+font = ExtResource("38_d7rgo")
+font_size = 48
+font_color = Color(0.107580006, 0.0876, 0.12, 0.73333335)
+outline_size = 8
+outline_color = Color(0.7267484, 0.18603075, 0.12829602, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vqkdg"]
 font = ExtResource("38_d7rgo")
@@ -70,6 +78,20 @@ texture = ExtResource("3_5xyti")
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=997787331]
 follow_viewport_enabled = true
 
+[node name="WaveScheduler" parent="GameLayer" unique_id=1750741460 node_paths=PackedStringArray("enemy_controller") instance=ExtResource("12_h3axc")]
+enemy_controller = NodePath("../EnemyController")
+
+[node name="EnemyController" type="Node" parent="GameLayer" unique_id=504619865 node_paths=PackedStringArray("world", "player")]
+script = ExtResource("7_67ri8")
+basic_enemy_scene = ExtResource("8_grrlh")
+world = NodePath("../world")
+player = NodePath("../world/player_ship")
+target_factor = 5.0
+seperation_factor = 10.0
+alignment_factor = 3.0
+cohesion_factor = 1.0
+metadata/_custom_type_script = "uid://gg7s7t6k2dtm"
+
 [node name="world" type="Node2D" parent="GameLayer" unique_id=647259127]
 script = ExtResource("5_vqjab")
 resourceManager = ExtResource("6_grrlh")
@@ -87,7 +109,7 @@ break_speed_decay = 0.95
 bullet_manager = NodePath("../BulletManager")
 
 [node name="Camera2D" type="Camera2D" parent="GameLayer/world/player_ship" unique_id=1202193931]
-zoom = Vector2(0.2, 0.2)
+zoom = Vector2(0.5, 0.5)
 process_callback = 0
 limit_enabled = false
 position_smoothing_enabled = true
@@ -110,19 +132,6 @@ script = ExtResource("2_kfbq2")
 bullet = ExtResource("5_3wy1v")
 railgun_beam = ExtResource("2_0i4oc")
 world = NodePath("..")
-
-[node name="WaveScheduler" parent="GameLayer/world" unique_id=1750741460 instance=ExtResource("12_h3axc")]
-
-[node name="EnemyController" type="Node" parent="GameLayer/world" unique_id=504619865 node_paths=PackedStringArray("world", "player")]
-script = ExtResource("7_67ri8")
-basic_enemy_scene = ExtResource("8_grrlh")
-world = NodePath("..")
-player = NodePath("../player_ship")
-target_factor = 5.0
-seperation_factor = 10.0
-alignment_factor = 3.0
-cohesion_factor = 1.0
-metadata/_custom_type_script = "uid://gg7s7t6k2dtm"
 
 [node name="AsteroidBig" parent="GameLayer/world" unique_id=734619674 instance=ExtResource("11_5xyti")]
 position = Vector2(576, 187)
@@ -260,6 +269,39 @@ texture = ExtResource("34_yyc07")
 [node name="Pause_2" type="Sprite2D" parent="UI/ScalingContainer/Pause" unique_id=1314560097]
 texture = ExtResource("35_3le5t")
 
+[node name="Control" type="Control" parent="UI" unique_id=942399114]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control" unique_id=1475996560]
+visible = false
+layout_mode = 0
+offset_left = 204.5
+offset_right = 947.5
+offset_bottom = 191.0
+theme_override_constants/margin_top = 127
+
+[node name="Banner" type="Label" parent="UI/Control/MarginContainer" unique_id=1283629841]
+layout_mode = 2
+text = "NEXT WAVE INCOMING..."
+label_settings = ExtResource("39_yjufm")
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/Control" unique_id=311694228]
+layout_mode = 1
+offset_right = 743.0
+offset_bottom = 191.0
+theme_override_constants/margin_left = 104
+theme_override_constants/margin_top = -89
+
+[node name="Objective" type="Label" parent="UI/Control/MarginContainer2" unique_id=1327099762]
+layout_mode = 2
+text = "KILL TURRETS: XX/XX"
+label_settings = SubResource("LabelSettings_yjufm")
+
 [node name="GameStartLayer" type="CanvasLayer" parent="." unique_id=1996391416]
 visible = false
 
@@ -321,9 +363,9 @@ theme_override_fonts/font = ExtResource("38_d7rgo")
 theme_override_font_sizes/font_size = 72
 text = "MENU"
 
-[connection signal="end" from="GameLayer/world" to="GameLayer/world/WaveScheduler" method="_on_main_end"]
-[connection signal="end" from="GameLayer/world" to="GameLayer/world/EnemyController" method="_on_main_end"]
-[connection signal="restart" from="GameLayer/world" to="GameLayer/world/WaveScheduler" method="_on_main_restart"]
+[connection signal="end" from="GameLayer/world" to="GameLayer/WaveScheduler" method="_on_main_end"]
+[connection signal="end" from="GameLayer/world" to="GameLayer/EnemyController" method="_on_main_end"]
+[connection signal="restart" from="GameLayer/world" to="GameLayer/WaveScheduler" method="_on_main_restart"]
 [connection signal="swtch_to_game_over" from="GameLayer/world" to="." method="game_over"]
 [connection signal="pressed" from="GameStartLayer/CenterContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="GameOverLayer/CenterContainer/VBoxContainer/GoToMenuButton" to="." method="_on_go_to_menu_button_pressed"]
