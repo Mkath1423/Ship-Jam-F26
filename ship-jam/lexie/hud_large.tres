@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dr7rt3ufvw85i"]
+
+[ext_resource type="FontFile" uid="uid://xaioqug64ufr" path="res://assets/BoldsPixels.ttf" id="1_nri2c"]
+
+[resource]
+font = ExtResource("1_nri2c")
+font_size = 72
+font_color = Color(0.107580006, 0.0876, 0.12, 0.73333335)
+outline_size = 8
+outline_color = Color(0.7921569, 0.21176471, 0.14901961, 1)

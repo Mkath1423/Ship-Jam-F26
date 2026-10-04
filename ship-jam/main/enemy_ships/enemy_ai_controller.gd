@@ -197,7 +197,6 @@ func _avoid_obstacles(info : EnemyInfo, delta : float):
 	var result = state_space.intersect_ray(query)
 	
 	if result:
-		print("avoiding: ", result["collider"].name)
 		var avoid = (result["position"] - info.node.global_position).normalized()
 		info.target_velocity = desired_velocity - avoid * avoid.dot(desired_velocity)
 		info.target_velocity = info.target_velocity.normalized() * desired_velocity.length()
