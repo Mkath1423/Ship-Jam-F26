@@ -4,12 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://dqr2qk0nhtxwq" path="res://james/railgun_bullet.tscn" id="2_0i4oc"]
 [ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="2_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="2_pjrb6"]
-[ext_resource type="Texture2D" uid="uid://ciq6f5ik5sqji" path="res://assets/Background (draft).png" id="3_5xyti"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_c651c"]
+[ext_resource type="Texture2D" uid="uid://bf5s8tj4p43y5" path="res://assets/Bg - backgroud base.png" id="4_cgvj2"]
 [ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="5_3wy1v"]
+[ext_resource type="Texture2D" uid="uid://daiat7xf1i3m5" path="res://assets/bg - planet atmosphere.png" id="5_t1yuj"]
 [ext_resource type="PackedScene" uid="uid://b87nur3avebrf" path="res://main/level/chunk_manager.tscn" id="5_ue0mw"]
 [ext_resource type="Script" uid="uid://ss7jlsr73ex4" path="res://main/world.gd" id="5_vqjab"]
+[ext_resource type="Texture2D" uid="uid://beybb6fm8asw2" path="res://assets/bg - planet atmosphere2 - optional.png" id="6_4pcu1"]
 [ext_resource type="Resource" uid="uid://c1k77bq5y0wvi" path="res://james/ResourceManager.tres" id="6_grrlh"]
+[ext_resource type="Texture2D" uid="uid://bsmcsigd6141k" path="res://assets/bg - planet atmosphere stars.png" id="7_7eg6f"]
 [ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="7_67ri8"]
 [ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="8_grrlh"]
 [ext_resource type="PackedScene" uid="uid://47jbhd5ealro" path="res://main/level/chunks/chunk_1.tscn" id="9_phifs"]
@@ -62,7 +65,7 @@ resourceManager = ExtResource("6_grrlh")
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=367381247]
 
-[node name="GameBackground" type="TextureRect" parent="BackgroundLayer" unique_id=133749328]
+[node name="GameBackground2" type="TextureRect" parent="BackgroundLayer" unique_id=2044749508]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,7 +74,40 @@ offset_right = -3.1867676
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_5xyti")
+texture = ExtResource("4_cgvj2")
+
+[node name="GameBackground4" type="TextureRect" parent="BackgroundLayer" unique_id=1492407447]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.1867676
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_t1yuj")
+
+[node name="GameBackground5" type="TextureRect" parent="BackgroundLayer" unique_id=548800127]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.1867676
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_4pcu1")
+
+[node name="GameBackground3" type="TextureRect" parent="BackgroundLayer" unique_id=766460352]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.1867676
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_7eg6f")
 
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=997787331]
 follow_viewport_enabled = true
@@ -81,11 +117,12 @@ enemy_controller = NodePath("../EnemyController")
 banner = NodePath("../../UI/Control/MarginContainer/Banner")
 objective = NodePath("../../UI/Control/MarginContainer2/Objective")
 
-[node name="EnemyController" type="Node" parent="GameLayer" unique_id=504619865 node_paths=PackedStringArray("world", "player")]
+[node name="EnemyController" type="Node" parent="GameLayer" unique_id=504619865 node_paths=PackedStringArray("world", "player", "chunk_manager")]
 script = ExtResource("7_67ri8")
 basic_enemy_scene = ExtResource("8_grrlh")
 world = NodePath("../world")
 player = NodePath("../world/player_ship")
+chunk_manager = NodePath("../world/ChunkManager")
 target_factor = 5.0
 seperation_factor = 10.0
 alignment_factor = 3.0
@@ -140,11 +177,11 @@ world = NodePath("..")
 scale = Vector2(4.13, 4.03)
 
 [node name="Border" type="Sprite2D" parent="UI/ScalingContainer" unique_id=1797648217]
-position = Vector2(139.5, 80.5)
+position = Vector2(139.46732, 80.39702)
 texture = ExtResource("18_d7rgo")
 
 [node name="Border-base" type="Sprite2D" parent="UI/ScalingContainer" unique_id=625522196]
-position = Vector2(139.5, 84.75)
+position = Vector2(139.5, 79.901)
 texture = ExtResource("19_yjufm")
 
 [node name="Speedometer" type="Node2D" parent="UI/ScalingContainer" unique_id=319360370 node_paths=PackedStringArray("player")]
@@ -190,7 +227,7 @@ texture = ExtResource("21_h3axc")
 offset = Vector2(-0.054336548, -8.449875)
 
 [node name="EnergyBar" type="Node2D" parent="UI/ScalingContainer" unique_id=1044980450]
-position = Vector2(139.5, 83.72)
+position = Vector2(139.5, 79.516)
 script = ExtResource("25_t1yuj")
 resourceManager = ExtResource("6_grrlh")
 
@@ -217,7 +254,7 @@ texture = ExtResource("28_rue0h")
 texture = ExtResource("29_c5cfd")
 
 [node name="HealthBar" type="Node2D" parent="UI/ScalingContainer" unique_id=1807470154]
-position = Vector2(139.5, 80.5)
+position = Vector2(139.5, 80.035)
 script = ExtResource("30_v40no")
 resourceManager = ExtResource("6_grrlh")
 

@@ -1,4 +1,5 @@
 extends Node2D
+class_name  ChunkManager
 
 @export var player : Node2D 
 @export var test_check : PackedScene
@@ -17,6 +18,23 @@ class ChunkInfo:
 var chunks : Dictionary[Vector2i, ChunkInfo] = {}
 var last_player_pos : Vector2i = Vector2i(100000, 100000)
 
+
+func _get_updated_world_position(pos : Vector2):
+	var chunk_pos = Vector2i(floor(pos / chunk_dims))
+	var rel_pos = pos - Vector2(chunk_pos) * chunk_dims
+	
+	var mod_pos = Vector2i(
+		posmod(chunk_pos.x, world_dimentions.x), 
+		posmod(chunk_pos.y, world_dimentions.y))
+		
+	if mod_pos in chunks: 
+		var chunk = chunks[mod_pos]
+		return rel_pos + chunk_dims * Vector2(chunk.chunk_offset)
+	else:
+		return pos
+	
+	
+	
 
 func _process(_delta: float) -> void:
 	_mark_all_stale()
