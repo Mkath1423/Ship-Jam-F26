@@ -13,7 +13,7 @@ func _ready() -> void:
 		max_speed = player.max_speed
 	else:
 		max_speed = 10000
-	original_rotation = get_node("Speedometer_1").get_node("Dial").rotation
+	original_rotation = get_node("Dial").rotation
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -26,4 +26,4 @@ func _process(delta: float) -> void:
 	
 	var new_rotation = new_additional_rotation + original_rotation
 	# Update the bar
-	get_node("Speedometer_1").get_node("Dial").rotation = new_rotation
+	get_node("Dial").rotation = new_rotation
