@@ -9,3 +9,5 @@ script = ExtResource("1_gnrve")
 
 [node name="WaveTimer" type="Timer" parent="." unique_id=2022302907]
 wait_time = 10.0
+
+[node name="CountDownTimer" type="Timer" parent="." unique_id=2103149084]

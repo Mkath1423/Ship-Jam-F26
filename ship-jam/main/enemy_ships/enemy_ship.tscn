@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0vn5q3rsr5tc"]
 
 [ext_resource type="Script" uid="uid://cl8lxbl07w3fa" path="res://main/enemy_ships/enemy_ship.gd" id="1_4nxlj"]
-[ext_resource type="Texture2D" uid="uid://cvo4rrnn8ubvs" path="res://assets/Sprite - rocket2b.png" id="2_oy0q2"]
+[ext_resource type="Texture2D" uid="uid://dvptw53jposf8" path="res://assets/Sprite - rocket1b.png" id="2_oy0q2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
 radius = 18.0
@@ -15,7 +15,6 @@ max_acceleration = 100000.0
 max_speed = 1700.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1532421090]
-modulate = Color(0.9141122, 0.72419167, 0, 1)
 position = Vector2(-3, 0)
 scale = Vector2(3, 3)
 texture = ExtResource("2_oy0q2")

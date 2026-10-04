@@ -76,8 +76,10 @@ texture = ExtResource("3_5xyti")
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=997787331]
 follow_viewport_enabled = true
 
-[node name="WaveScheduler" parent="GameLayer" unique_id=1750741460 node_paths=PackedStringArray("enemy_controller") instance=ExtResource("12_h3axc")]
+[node name="WaveScheduler" parent="GameLayer" unique_id=1750741460 node_paths=PackedStringArray("enemy_controller", "banner", "objective") instance=ExtResource("12_h3axc")]
 enemy_controller = NodePath("../EnemyController")
+banner = NodePath("../../UI/Control/MarginContainer/Banner")
+objective = NodePath("../../UI/Control/MarginContainer2/Objective")
 
 [node name="EnemyController" type="Node" parent="GameLayer" unique_id=504619865 node_paths=PackedStringArray("world", "player")]
 script = ExtResource("7_67ri8")
@@ -259,7 +261,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Control" unique_id=1475996560]
-visible = false
 layout_mode = 0
 offset_left = 204.5
 offset_right = 947.5
