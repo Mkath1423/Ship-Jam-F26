@@ -6,6 +6,7 @@ signal player_killed_enemy(type : BehaviorType)
 @export var world : Node2D
 @export var player : Node2D
 @export var chunk_manager : ChunkManager
+@export var alert_manager : AlertManager
 
 @export var target_factor : float
 @export var seperation_factor : float
@@ -44,6 +45,7 @@ func _awaken_enemy(position : Vector2):
 	world.add_child(node)
 	info.node = node
 	info.node.is_dying = false
+	alert_manager.alert_entities.push_back(node)
 	return info
 
 

@@ -36,6 +36,11 @@ var look_at = Vector2.LEFT
 @onready var break_particles = $nudge_root/break_particles
 @onready var bullet_spawn_point = $Sprite2D/bullet_spawn_point
 
+var start_position : Vector2 = Vector2.ZERO
+
+func _ready() -> void:
+	start_position = global_position
+
 func emit_nudge_particles(nudge_dir: Vector2):
 	if boost_particles.emitting == true:
 		return 
@@ -154,3 +159,13 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		resourceManager.playerHealth -= 10
 		body.is_dying = true
 		print(resourceManager.playerHealth)
+
+
+func _on_world_restart() -> void:
+	global_position = start_position
+	velocity = Vector2.ZERO
+
+
+func _on_world_end() -> void:
+	global_position = start_position
+	velocity = Vector2.ZERO

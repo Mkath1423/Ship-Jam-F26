@@ -74,11 +74,11 @@ func _spawn_chunk(pos : Vector2i):
 		chunk.node.initialize_at(chunk_dims * Vector2(pos), pos)
 		chunks[mod_pos] = chunk
 
-func load_nearby_chunks():
-	var player_chunk_pos = Vector2i(floor(player.global_position / chunk_dims))
+func load_around(player_pos : Vector2, force : bool):
+
+	var player_chunk_pos = Vector2i(floor(player_pos / chunk_dims))
 	
-	
-	if last_player_pos == player_chunk_pos:
+	if not force and last_player_pos == player_chunk_pos:
 		return
 	
 	last_player_pos = player_chunk_pos
@@ -89,8 +89,19 @@ func load_nearby_chunks():
 			
 			
 	_cleanup_stale_chunks()
+	
 
-	
-	
-	
-	
+func load_nearby_chunks():
+	load_around(player.global_position, false)
+
+func _on_world_end() -> void:
+	_mark_all_stale()
+	_cleanup_stale_chunks()
+	load_around(Vector2.ZERO, true)
+
+
+func _on_world_restart() -> void:
+	print("world starting...")
+	_mark_all_stale()
+	_cleanup_stale_chunks()
+	load_around(Vector2.ZERO, true)
