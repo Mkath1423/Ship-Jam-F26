@@ -147,6 +147,7 @@ follow_viewport_enabled = true
 enemy_controller = NodePath("../EnemyController")
 chunk_manager = NodePath("../world/ChunkManager")
 player = NodePath("../world/player_ship")
+resourceManager = ExtResource("6_grrlh")
 banner = NodePath("../../UI/Control/MarginContainer/Banner")
 objective = NodePath("../../UI/Control/MarginContainer2/Objective")
 

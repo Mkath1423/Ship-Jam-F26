@@ -13,10 +13,16 @@ class_name ResourceManager
 func restart():
 	playerHealth = maxPlayerHealth
 	playerEnergy = 0
+
+func attempt_add_health(health_to_add : float):
+	if playerHealth + health_to_add > maxPlayerHealth:
+		playerHealth = maxPlayerHealth
+	else:
+		playerHealth += health_to_add
 	
 func attempt_add_energy(energy_to_add : float):
 	if playerEnergy + energy_to_add > maxPlayerEnergy:
-		playerEnergy = 100
+		playerEnergy = maxPlayerEnergy
 	else:
 		playerEnergy += energy_to_add
 

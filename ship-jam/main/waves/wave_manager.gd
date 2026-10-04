@@ -11,6 +11,7 @@ enum RoundType { IDLE, SURVIVE }
 @export var enemy_controller : EnemyController 
 @export var chunk_manager : ChunkManager
 @export var player : Node2D 
+@export var resourceManager : Resource
 
 @onready var round_timer : Timer = $RoundTimer
 @onready var wave_timer : Timer = $WaveTimer
@@ -118,6 +119,7 @@ func _initialize_survival_objective():
 func _start_survival_round():
 	current_round_type = RoundType.SURVIVE
 	count_down = 30
+	resourceManager.attempt_add_health(20);
 	await _initialize_survival_objective()
 	_wave_timer_timeout()
 	count_down_timer.start(1)
