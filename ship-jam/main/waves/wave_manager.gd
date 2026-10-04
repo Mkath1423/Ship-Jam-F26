@@ -142,7 +142,7 @@ func _wave_timer_timeout():
 		print("ignoring bad wave request")
 		return 
 	
-	_spawn_chasers_near_player(3 + rounds_cleared  * 3)
+	_spawn_chasers_near_player(30 + rounds_cleared  * 3)
 	
 	wave_timer.start(5)
 	

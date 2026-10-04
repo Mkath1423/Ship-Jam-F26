@@ -19,10 +19,10 @@ func _hide_all():
 	$GameLayer.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _show_game_screen():
+	$GameLayer.process_mode = Node.PROCESS_MODE_INHERIT
 	$BackgroundLayer.show()
 	$GameLayer.show()
 	$UI.show()
-	$GameLayer.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func set_screen(screen : screens):
@@ -44,8 +44,9 @@ func game_over():
 
 func _on_start_game_button_pressed() -> void:
 	resourceManager.restart()
-	set_screen(screens.Game)
 	$GameLayer/world.start()
+	await get_tree().create_timer(0.1).timeout
+	set_screen(screens.Game)
 
 
 func _on_go_to_menu_button_pressed() -> void:
