@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="7_67ri8"]
 [ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="8_grrlh"]
 [ext_resource type="PackedScene" uid="uid://47jbhd5ealro" path="res://main/level/chunks/chunk_1.tscn" id="9_phifs"]
+[ext_resource type="AudioStream" uid="uid://c0yby0f7rkt2f" path="res://assets/explosion.wav" id="10_cgvj2"]
 [ext_resource type="PackedScene" uid="uid://de4gktyjse2jh" path="res://main/waves/wave_scheduler.tscn" id="12_h3axc"]
 [ext_resource type="Texture2D" uid="uid://xum7ufyisah0" path="res://assets/UI - border Red.png" id="18_d7rgo"]
 [ext_resource type="Script" uid="uid://d0awwmw8t4h1p" path="res://main/UI/speedometer.gd" id="18_ue0mw"]
@@ -128,6 +129,10 @@ seperation_factor = 10.0
 alignment_factor = 3.0
 cohesion_factor = 1.0
 metadata/_custom_type_script = "uid://gg7s7t6k2dtm"
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="GameLayer/EnemyController" unique_id=340087078]
+stream = ExtResource("10_cgvj2")
+max_polyphony = 400
 
 [node name="world" type="Node2D" parent="GameLayer" unique_id=647259127]
 script = ExtResource("5_vqjab")

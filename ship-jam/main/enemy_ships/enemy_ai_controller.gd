@@ -35,6 +35,7 @@ var live_flocks : Array[FlockInfo]
 
 func _kill_one(info: EnemyInfo):
 	info.node.queue_free()
+	$DeathSound.play()
 	
 func _awaken_enemy(position : Vector2):
 	var info = EnemyInfo.new()
