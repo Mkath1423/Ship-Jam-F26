@@ -1,17 +1,9 @@
 extends Node2D
 
-@export var resourceManager : Resource
+@export var resourceManager : ResourceManager
 
 enum screens { GameStart, Game, GameOver }
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if (resourceManager.playerHealth <= 0):
-		game_over()
 
 func set_screen(screen : screens):
 	if screen == screens.GameStart:
@@ -34,13 +26,13 @@ func set_screen(screen : screens):
 		$GameOverLayer.show()
 
 func game_over():
-	$GameLayer/world.end.emit()
 	set_screen(screens.GameOver)
 
 
 func _on_start_game_button_pressed() -> void:
+	resourceManager.restart()
 	set_screen(screens.Game)
-	$GameLayer/world.restart.emit()
+	$GameLayer/world.start()
 
 
 func _on_go_to_menu_button_pressed() -> void:

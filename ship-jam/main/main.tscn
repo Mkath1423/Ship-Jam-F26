@@ -80,6 +80,7 @@ follow_viewport_enabled = true
 
 [node name="world" type="Node2D" parent="GameLayer" unique_id=647259127]
 script = ExtResource("5_vqjab")
+resourceManager = ExtResource("6_grrlh")
 
 [node name="ChunkManager" parent="GameLayer/world" unique_id=1101586204 node_paths=PackedStringArray("player") instance=ExtResource("5_ue0mw")]
 player = NodePath("../player_ship")
@@ -268,4 +269,5 @@ text = "Go to menu"
 [connection signal="end" from="GameLayer/world" to="GameLayer/world/EnemyController" method="_on_main_end"]
 [connection signal="end" from="GameLayer/world" to="GameLayer/world/WaveScheduler" method="_on_main_end"]
 [connection signal="restart" from="GameLayer/world" to="GameLayer/world/WaveScheduler" method="_on_main_restart"]
+[connection signal="swtch_to_game_over" from="GameLayer/world" to="." method="game_over"]
 [connection signal="pressed" from="GameOverLayer/Node2D/GoToMenuButton" to="." method="_on_go_to_menu_button_pressed"]
