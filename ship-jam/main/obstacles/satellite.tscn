@@ -4,12 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://kyvrukxth0qp" path="res://assets/Sprite - Satellitew.png" id="2_ifkpx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gjug"]
-size = Vector2(13, 38)
+size = Vector2(28, 151)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8oc6l"]
-size = Vector2(14, 17)
+[sub_resource type="CircleShape2D" id="CircleShape2D_75xyr"]
+radius = 34.0147
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ie18w"]
+size = Vector2(28, 24)
 
 [node name="Satellite" type="RigidBody2D" unique_id=1165367634]
+mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_75xyr")
 
@@ -18,9 +22,13 @@ scale = Vector2(4, 4)
 texture = ExtResource("2_ifkpx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1655164217]
-position = Vector2(5.5, 0)
+position = Vector2(22, -0.5)
 shape = SubResource("RectangleShape2D_4gjug")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1539052407]
-position = Vector2(-8, 0.5)
-shape = SubResource("RectangleShape2D_8oc6l")
+position = Vector2(-30, 2)
+shape = SubResource("CircleShape2D_75xyr")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." unique_id=93416052]
+position = Vector2(50, 0)
+shape = SubResource("RectangleShape2D_ie18w")

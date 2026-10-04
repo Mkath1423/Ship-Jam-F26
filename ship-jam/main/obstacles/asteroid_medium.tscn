@@ -4,16 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://bf1n7mfa71bxj" path="res://assets/Sprite - Aster2.png" id="1_vsw4r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y78ln"]
-radius = 7.0
+radius = 29.017237
 
 [node name="AsteroidMedium" type="RigidBody2D" unique_id=448815807]
+mass = 4.0
 gravity_scale = 0.0
 script = ExtResource("1_4civd")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1168402657]
-position = Vector2(6, 9)
 scale = Vector2(4, 4)
 texture = ExtResource("1_vsw4r")
+offset = Vector2(6, 9.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=552229534]
 shape = SubResource("CircleShape2D_y78ln")
