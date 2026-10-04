@@ -144,7 +144,12 @@ func _wave_timer_timeout():
 		print("ignoring bad wave request")
 		return 
 	
-	_spawn_chasers_near_player(3 + rounds_cleared  * 3)
+	var total_enemies_to_spawn : int = 3 + rounds_cleared * 2
+	var groups_to_spawn : int = floor(rounds_cleared / 2) + 1
+	var enemies_per_group : int = floor(total_enemies_to_spawn / groups_to_spawn)
+	
+	for i in range(groups_to_spawn):
+		_spawn_chasers_near_player(enemies_per_group)
 	
 	wave_timer.start(5)
 	

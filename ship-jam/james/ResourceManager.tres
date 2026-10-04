@@ -1,7 +1,8 @@
-[gd_resource type="Resource" format=3 uid="uid://c1k77bq5y0wvi"]
+[gd_resource type="Resource" script_class="ResourceManager" format=3 uid="uid://c1k77bq5y0wvi"]
 
 [ext_resource type="Script" uid="uid://n7bov537pcdm" path="res://james/ResourceManager.gd" id="1_3uyut"]
 
 [resource]
 script = ExtResource("1_3uyut")
-playerHealth = 100
+maxPlayerHealth = 1000000
+playerHealth = 1000000
