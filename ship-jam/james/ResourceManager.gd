@@ -3,7 +3,10 @@
 
 extends Resource
 
-@export var playerHealth : int = 0
+@export var maxPlayerHealth : int = 100
+@export var maxPlayerEnergy : int = 100
+
+@export var playerHealth : int = maxPlayerHealth
 @export var playerEnergy : float = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -17,7 +20,7 @@ func _process(delta: float) -> void:
 	
 
 func attempt_add_energy(energy_to_add : float):
-	if playerEnergy + energy_to_add > 100:
+	if playerEnergy + energy_to_add > maxPlayerEnergy:
 		playerEnergy = 100
 	else:
 		playerEnergy += energy_to_add
