@@ -4,5 +4,4 @@
 
 [resource]
 script = ExtResource("1_3uyut")
-maxPlayerHealth = 1000000
-playerHealth = 1000000
+playerHealth = 100
