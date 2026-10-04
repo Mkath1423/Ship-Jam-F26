@@ -54,22 +54,22 @@ position = Vector2(1331, 865)
 position = Vector2(1422, 897)
 
 [node name="AsteroidBig6" parent="." unique_id=780925474 instance=ExtResource("1_ues0g")]
-position = Vector2(241, 1903)
+position = Vector2(234, 1967)
 
 [node name="AsteroidMedium3" parent="." unique_id=1814672381 instance=ExtResource("2_52ta4")]
-position = Vector2(213, 1834)
+position = Vector2(277, 1669)
 
 [node name="AsteroidSmall6" parent="." unique_id=937198390 instance=ExtResource("3_vm602")]
-position = Vector2(181, 1886)
+position = Vector2(511, 1836)
 
-[node name="AsteroidBig" parent="AsteroidSmall6" unique_id=158012277 instance=ExtResource("1_ues0g")]
-position = Vector2(2657, -1670)
+[node name="AsteroidBig10" parent="." unique_id=158012277 instance=ExtResource("1_ues0g")]
+position = Vector2(2838, 216)
 
-[node name="AsteroidMedium" parent="AsteroidSmall6" unique_id=950397584 instance=ExtResource("2_52ta4")]
-position = Vector2(2629, -1739)
+[node name="AsteroidMedium7" parent="." unique_id=950397584 instance=ExtResource("2_52ta4")]
+position = Vector2(2810, 147)
 
-[node name="AsteroidSmall" parent="AsteroidSmall6" unique_id=114922621 instance=ExtResource("3_vm602")]
-position = Vector2(2597, -1687)
+[node name="AsteroidSmall10" parent="." unique_id=114922621 instance=ExtResource("3_vm602")]
+position = Vector2(2778, 199)
 
 [node name="AsteroidBig7" parent="." unique_id=257703327 instance=ExtResource("1_ues0g")]
 position = Vector2(687, 2601)
@@ -80,20 +80,24 @@ position = Vector2(659, 2532)
 [node name="AsteroidSmall7" parent="." unique_id=395364066 instance=ExtResource("3_vm602")]
 position = Vector2(627, 2584)
 
-[node name="AsteroidBig" parent="AsteroidSmall7" unique_id=1717141400 instance=ExtResource("1_ues0g")]
-position = Vector2(143, 513)
+[node name="AsteroidBig9" parent="." unique_id=1717141400 instance=ExtResource("1_ues0g")]
+position = Vector2(770, 3097)
 
-[node name="AsteroidMedium" parent="AsteroidSmall7" unique_id=974441778 instance=ExtResource("2_52ta4")]
-position = Vector2(115, 444)
+[node name="AsteroidMedium6" parent="." unique_id=974441778 instance=ExtResource("2_52ta4")]
+position = Vector2(742, 3028)
 
-[node name="AsteroidSmall" parent="AsteroidSmall7" unique_id=660551909 instance=ExtResource("3_vm602")]
-position = Vector2(83, 496)
+[node name="AsteroidSmall9" parent="." unique_id=660551909 instance=ExtResource("3_vm602")]
+position = Vector2(710, 3080)
 
 [node name="AsteroidBig8" parent="." unique_id=2107433883 instance=ExtResource("1_ues0g")]
 position = Vector2(2570, 2357)
 
 [node name="AsteroidMedium5" parent="." unique_id=1804209092 instance=ExtResource("2_52ta4")]
-position = Vector2(2542, 2288)
+position = Vector2(2456, 1507)
 
 [node name="AsteroidSmall8" parent="." unique_id=1331036536 instance=ExtResource("3_vm602")]
-position = Vector2(2510, 2340)
+position = Vector2(2044, 2154)
+
+[node name="Satellite3" parent="." unique_id=492546441 instance=ExtResource("4_1udax")]
+position = Vector2(387, 1162)
+rotation = 1.0262332
