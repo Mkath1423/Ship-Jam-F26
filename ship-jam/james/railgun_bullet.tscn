@@ -4,8 +4,11 @@
 [ext_resource type="Script" uid="uid://hyku1mxwv5b1" path="res://james/railgun_bullet.gd" id="1_8bkei"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3sai6"]
+size = Vector2(39.0625, 25.677082)
 
 [node name="RailgunBullet" type="Area2D" unique_id=769879035]
+collision_layer = 8
+collision_mask = 7
 script = ExtResource("1_8bkei")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1464411184]
@@ -14,8 +17,14 @@ scale = Vector2(0.02, 3)
 texture = ExtResource("1_3sai6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1098982394]
-position = Vector2(0, -192)
+position = Vector2(0.5, -246.5)
 scale = Vector2(0.128, 19.2)
 shape = SubResource("RectangleShape2D_3sai6")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=738992543]
+offset_left = -2.0
+offset_top = -493.0
+offset_right = 3.0
+offset_bottom = 7.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

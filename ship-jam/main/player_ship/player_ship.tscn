@@ -2,20 +2,95 @@
 
 [ext_resource type="Script" uid="uid://6kebfld0lrdi" path="res://main/player_ship/player_ship.gd" id="1_cplq0"]
 [ext_resource type="Resource" uid="uid://c1k77bq5y0wvi" path="res://james/ResourceManager.tres" id="2_cfcxt"]
-[ext_resource type="Texture2D" uid="uid://yfdrvpdjrlwl" path="res://lexie/purple-ship.png" id="2_upp5r"]
+[ext_resource type="Texture2D" uid="uid://dvptw53jposf8" path="res://assets/Sprite - rocket1b.png" id="3_cfcxt"]
+
+[sub_resource type="Gradient" id="Gradient_cfcxt"]
+offsets = PackedFloat32Array(0, 0.7)
+colors = PackedColorArray(1, 0, 0, 1, 0.9176098, 0.7302848, 3.85046e-07, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
-radius = 48.010414
+radius = 37.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8oc6l"]
-radius = 50.01
+radius = 28.0
 
 [node name="player_ship" type="CharacterBody2D" unique_id=1037649546]
+collision_layer = 2
 script = ExtResource("1_cplq0")
 resourceManager = ExtResource("2_cfcxt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1536780458]
-texture = ExtResource("2_upp5r")
+z_index = 1
+scale = Vector2(4, 4)
+texture = ExtResource("3_cfcxt")
+
+[node name="bullet_spawn_point" type="Marker2D" parent="Sprite2D" unique_id=1649917596]
+z_index = -1
+position = Vector2(0, -11)
+scale = Vector2(0.25, 0.25)
+
+[node name="boost_particles" type="CPUParticles2D" parent="Sprite2D" unique_id=1922494228]
+z_index = -1
+position = Vector2(0, 6.25)
+scale = Vector2(0.25, 0.25)
+emitting = false
+lifetime = 0.75
+local_coords = true
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 75.0
+initial_velocity_max = 100.0
+angular_velocity_min = -413.22
+angular_velocity_max = 325.57
+angle_max = 360.0
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+color_ramp = SubResource("Gradient_cfcxt")
+
+[node name="nudge_root" type="Node2D" parent="." unique_id=318200596]
+physics_interpolation_mode = 2
+
+[node name="nudge_particles" type="CPUParticles2D" parent="nudge_root" unique_id=1249471773]
+position = Vector2(0, 25)
+emitting = false
+lifetime = 0.5
+one_shot = true
+local_coords = true
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+angle_max = 360.0
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+color = Color(1, 0.9427434, 0.87246364, 1)
+hue_variation_min = -0.2
+hue_variation_max = 0.32
+
+[node name="break_particles" type="CPUParticles2D" parent="nudge_root" unique_id=1025390770]
+position = Vector2(0, 25)
+emitting = false
+amount = 12
+local_coords = true
+draw_order = 1
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+angle_max = 360.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+color = Color(1, 0.9427434, 0.87246364, 1)
+hue_variation_min = -0.2
+hue_variation_max = 0.32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=530713084]
 shape = SubResource("CircleShape2D_vqkdg")
@@ -25,10 +100,12 @@ wait_time = 0.5
 one_shot = true
 
 [node name="NoEnergyGainTimer" type="Timer" parent="." unique_id=468341761]
-wait_time = 0.05
+wait_time = 0.25
 one_shot = true
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=2096706557]
+collision_layer = 2
+collision_mask = 5
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox" unique_id=997891879]
 shape = SubResource("CircleShape2D_8oc6l")

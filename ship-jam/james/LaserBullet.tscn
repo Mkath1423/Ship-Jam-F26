@@ -1,19 +1,28 @@
 [gd_scene format=3 uid="uid://chaq7wuhdxn4i"]
 
 [ext_resource type="Script" uid="uid://t6x0ooapeqlp" path="res://james/laser_bullet.gd" id="1_qac68"]
-[ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_sr6o6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gjug"]
-size = Vector2(128, 128)
+size = Vector2(100, 150.00003)
 
 [node name="LaserBullet" type="Area2D" unique_id=211852017]
 scale = Vector2(0.12, 0.3)
+collision_layer = 8
+collision_mask = 7
 script = ExtResource("1_qac68")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1124141445]
-texture = ExtResource("2_sr6o6")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=386997035]
+position = Vector2(-1.4901161e-06, 1.6666673)
+scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_4gjug")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=357644663]
+custom_minimum_size = Vector2(25, 150)
+offset_left = -25.0
+offset_top = -73.33333
+offset_right = 25.0
+offset_bottom = 76.66667
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -12,7 +12,7 @@ var acceleration : Vector2
 
 @export var resourceManager : Resource
 var energy_gain_rate : float = 0
-var energy_gain_factor : float = 0.2
+var energy_gain_factor : float = 1
 # We need to disable energy gain right when the railgun fires, since that makes
 # the acceleration go through the roof, which energy gain rate is based on.
 var energy_gain_enabled : bool = true
@@ -30,6 +30,23 @@ var has_hit_player : bool = false
 
 var look_at = Vector2.LEFT
 
+@onready var nudge_root = $nudge_root
+@onready var nudge_particles = $nudge_root/nudge_particles
+@onready var boost_particles = $Sprite2D/boost_particles
+@onready var break_particles = $nudge_root/break_particles
+@onready var bullet_spawn_point = $Sprite2D/bullet_spawn_point
+
+func emit_nudge_particles(nudge_dir: Vector2):
+	if boost_particles.emitting == true:
+		return 
+	nudge_root.rotation = nudge_dir.angle() + deg_to_rad(90)
+	if not nudge_particles.emitting:
+		nudge_particles.emitting = true
+
+func emit_break_particles():
+	nudge_root.rotation = (-velocity).angle() + deg_to_rad(90)
+	break_particles.emitting = true
+
 func _physics_process(delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	
@@ -42,13 +59,25 @@ func _physics_process(delta: float) -> void:
 		Input.get_axis("forward", "back")
 	)
 	
+	if Input.is_action_just_pressed("left") or \
+		Input.is_action_just_pressed("right") or \
+		Input.is_action_just_pressed("forward") or \
+		Input.is_action_just_pressed("back"):
+		emit_nudge_particles(nudge.normalized())
+	
+	
 	velocity += nudge * delta * nudge_acceleration
 	
 	if Input.is_action_pressed("break"):
 		velocity *= (1 - break_speed_decay * delta)
+		emit_break_particles()
 	
 	elif Input.is_action_pressed("boost"):
 		velocity += look_at * delta * boost_acceleration
+		boost_particles.emitting = true
+	else:
+		boost_particles.emitting = false
+		break_particles.emitting = false
 	var speed = velocity.length()
 	if max_speed > 0 and speed > max_speed:
 		var decay = max_speed_decay * delta
@@ -70,10 +99,11 @@ func _physics_process(delta: float) -> void:
 	
 	if charging_railgun:
 		# TODO: Adapt this to be slowdown, or whatever else it needs to be
-		velocity = Vector2(0, 0)
+		velocity *= 0.8 * delta
 	
 	acceleration = (velocity - prev_velocity) * delta
-	energy_gain_rate = abs(velocity.angle_to(acceleration)) * acceleration.length() * energy_gain_factor
+	var theta = sin(velocity.angle_to(acceleration))
+	energy_gain_rate = theta * theta * acceleration.length() * energy_gain_factor
 	if energy_gain_enabled:
 		resourceManager.attempt_add_energy(energy_gain_rate)
 	
@@ -82,9 +112,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if Input.is_action_pressed("shoot") and not gun_on_cooldown:
-		bullet_manager.spawn_bullet(teams.team.Player, position, 3000, $Sprite2D.rotation)
-		$ShotTimer.start()
 		gun_on_cooldown = true
+		bullet_manager.spawn_bullet(teams.team.Player, bullet_spawn_point.global_position, 3000, $Sprite2D.rotation)
+		await get_tree().create_timer(0.05).timeout
+		bullet_manager.spawn_bullet(teams.team.Player, bullet_spawn_point.global_position, 3000, $Sprite2D.rotation+0.01*PI)
+		await get_tree().create_timer(0.05).timeout
+		bullet_manager.spawn_bullet(teams.team.Player, bullet_spawn_point.global_position, 3000, $Sprite2D.rotation+0.01*PI)
+		$ShotTimer.start()
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)

@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dqr2qk0nhtxwq" path="res://james/railgun_bullet.tscn" id="2_0i4oc"]
 [ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="2_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="2_pjrb6"]
-[ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_xwkvk"]
 [ext_resource type="Texture2D" uid="uid://ciq6f5ik5sqji" path="res://assets/Background (draft).png" id="3_5xyti"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_c651c"]
 [ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="5_3wy1v"]
@@ -38,44 +37,36 @@
 [ext_resource type="Texture2D" uid="uid://dmhm7isxouko0" path="res://assets/UI - health - sym.png" id="33_028el"]
 [ext_resource type="Texture2D" uid="uid://dbjr50ubr1t5r" path="res://assets/UI - pause - back.png" id="34_yyc07"]
 [ext_resource type="Texture2D" uid="uid://fxkjydkksmth" path="res://assets/UI - pause - pause.png" id="35_3le5t"]
+[ext_resource type="FontFile" uid="uid://xaioqug64ufr" path="res://assets/BoldsPixels.ttf" id="38_d7rgo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vqkdg"]
+font = ExtResource("38_d7rgo")
+font_size = 160
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mahgt"]
+font = ExtResource("38_d7rgo")
+font_size = 72
 
 [node name="Main2" type="Node2D" unique_id=203743139]
 script = ExtResource("1_bsumw")
 resourceManager = ExtResource("6_grrlh")
 
-[node name="GameStartLayer" type="CanvasLayer" parent="." unique_id=1996391416]
-
-[node name="StartButton" type="Node2D" parent="GameStartLayer" unique_id=1852466900]
-position = Vector2(259, 173)
-
-[node name="Sprite2D" type="Sprite2D" parent="GameStartLayer/StartButton" unique_id=1352167858]
-position = Vector2(-1, 2)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_xwkvk")
-
-[node name="StartGameButton" type="Button" parent="GameStartLayer/StartButton" unique_id=961860294]
-offset_left = -55.0
-offset_top = -12.0
-offset_right = 51.0
-offset_bottom = 19.0
-text = "START GAME"
-
 [node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=367381247]
-visible = false
 
 [node name="GameBackground" type="TextureRect" parent="BackgroundLayer" unique_id=133749328]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 100.0
-offset_bottom = 80.0
+offset_right = -3.1867676
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_5xyti")
 
 [node name="GameLayer" type="CanvasLayer" parent="." unique_id=997787331]
-visible = false
 follow_viewport_enabled = true
 
 [node name="world" type="Node2D" parent="GameLayer" unique_id=647259127]
@@ -107,8 +98,8 @@ drag_top_margin = 0.4
 drag_right_margin = 0.3
 drag_bottom_margin = 0.0
 script = ExtResource("4_c651c")
-lower_bound_margin = 0.6
-upper_bound_margin = 0.2
+lower_bound_margin = 0.3
+upper_bound_margin = 0.1
 lower_bound_speed = 300.0
 upper_bound_speed = 1000.0
 gamma = 1.5
@@ -134,15 +125,19 @@ metadata/_custom_type_script = "uid://gg7s7t6k2dtm"
 
 [node name="AsteroidBig" parent="GameLayer/world" unique_id=734619674 instance=ExtResource("11_5xyti")]
 position = Vector2(576, 187)
+mass = 100.0
 
 [node name="AsteroidMedium" parent="GameLayer/world" unique_id=448815807 instance=ExtResource("12_n3o0a")]
 position = Vector2(700, 105)
+mass = 100.0
 
 [node name="AsteroidSmall" parent="GameLayer/world" unique_id=1827357198 instance=ExtResource("13_s758e")]
 position = Vector2(759, 364)
+mass = 100.0
 
 [node name="Satellite" parent="GameLayer/world" unique_id=1165367634 instance=ExtResource("14_4hmqs")]
 position = Vector2(825, 197)
+mass = 100.0
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=272313975]
 
@@ -248,26 +243,70 @@ texture = ExtResource("34_yyc07")
 [node name="Pause_2" type="Sprite2D" parent="UI/ScalingContainer/Pause" unique_id=1314560097]
 texture = ExtResource("35_3le5t")
 
+[node name="GameStartLayer" type="CanvasLayer" parent="." unique_id=1996391416]
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="GameStartLayer" unique_id=1715856033]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameStartLayer/CenterContainer" unique_id=876739533]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameStartLayer/CenterContainer/VBoxContainer" unique_id=416678010]
+layout_mode = 2
+text = "SHIP GAME"
+label_settings = SubResource("LabelSettings_vqkdg")
+horizontal_alignment = 1
+
+[node name="StartGameButton" type="Button" parent="GameStartLayer/CenterContainer/VBoxContainer" unique_id=961860294]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("38_d7rgo")
+theme_override_font_sizes/font_size = 72
+text = "START"
+
 [node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=540281078]
 visible = false
 
-[node name="Node2D" type="Node2D" parent="GameOverLayer" unique_id=119873175]
-position = Vector2(449, 259)
+[node name="CenterContainer" type="CenterContainer" parent="GameOverLayer" unique_id=1426563626]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="GameOverLayer/Node2D" unique_id=1468201272]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_xwkvk")
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverLayer/CenterContainer" unique_id=1286325829]
+layout_mode = 2
 
-[node name="GoToMenuButton" type="Button" parent="GameOverLayer/Node2D" unique_id=212844781]
-offset_left = -48.0
-offset_top = -16.0
-offset_right = 51.0
-offset_bottom = 15.0
-text = "Go to menu"
+[node name="Label" type="Label" parent="GameOverLayer/CenterContainer/VBoxContainer" unique_id=2067320175]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_vqkdg")
+horizontal_alignment = 1
 
-[connection signal="pressed" from="GameStartLayer/StartButton/StartGameButton" to="." method="_on_start_game_button_pressed"]
-[connection signal="end" from="GameLayer/world" to="GameLayer/world/EnemyController" method="_on_main_end"]
+[node name="Rounds" type="Label" parent="GameOverLayer/CenterContainer/VBoxContainer" unique_id=1696920473]
+layout_mode = 2
+text = "Rounds Cleared:"
+label_settings = SubResource("LabelSettings_mahgt")
+horizontal_alignment = 1
+
+[node name="GoToMenuButton" type="Button" parent="GameOverLayer/CenterContainer/VBoxContainer" unique_id=212844781]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("38_d7rgo")
+theme_override_font_sizes/font_size = 72
+text = "MENU"
+
 [connection signal="end" from="GameLayer/world" to="GameLayer/world/WaveScheduler" method="_on_main_end"]
+[connection signal="end" from="GameLayer/world" to="GameLayer/world/EnemyController" method="_on_main_end"]
 [connection signal="restart" from="GameLayer/world" to="GameLayer/world/WaveScheduler" method="_on_main_restart"]
 [connection signal="swtch_to_game_over" from="GameLayer/world" to="." method="game_over"]
-[connection signal="pressed" from="GameOverLayer/Node2D/GoToMenuButton" to="." method="_on_go_to_menu_button_pressed"]
+[connection signal="pressed" from="GameStartLayer/CenterContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="GameOverLayer/CenterContainer/VBoxContainer/GoToMenuButton" to="." method="_on_go_to_menu_button_pressed"]

@@ -192,6 +192,7 @@ func _move_ship(info : EnemyInfo, delta : float):
 	info.node.velocity += accel * delta
 	#info.node.move_and_slide()
 	info.node.velocity.limit_length(info.node.max_speed)
+	info.node.set_direction(info.node.velocity.angle() + deg_to_rad(90))
 
 	var collision = info.node.move_and_collide(info.node.velocity * delta)
 

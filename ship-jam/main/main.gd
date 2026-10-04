@@ -2,30 +2,41 @@ extends Node2D
 
 @export var resourceManager : ResourceManager
 
+@onready var wave_manager = $GameLayer/world/WaveScheduler
+@onready var rounds_cleared_ui = $GameOverLayer/CenterContainer/VBoxContainer/Rounds
+
 enum screens { GameStart, Game, GameOver }
+
+func _ready() -> void:
+	set_screen(screens.GameStart)
+
+func _hide_all():
+	$BackgroundLayer.hide()
+	$GameLayer.hide()
+	$UI.hide()
+	$GameStartLayer.hide()
+	$GameOverLayer.hide()
+
+func _show_game_screen():
+	$BackgroundLayer.show()
+	$GameLayer.show()
+	$UI.show()
 
 
 func set_screen(screen : screens):
+	_hide_all()
+	$BackgroundLayer.show()
 	if screen == screens.GameStart:
 		$GameStartLayer.show()
-		$BackgroundLayer.hide()
-		$GameLayer.hide()
-		$UI.hide()
-		$GameOverLayer.hide()
+		
 	elif screen == screens.Game:
-		$GameStartLayer.hide()
-		$BackgroundLayer.show()
-		$GameLayer.show()
-		$UI.show()
-		$GameOverLayer.hide()
+		_show_game_screen()
+		
 	elif screen == screens.GameOver:
-		$GameStartLayer.hide()
-		$BackgroundLayer.hide()
-		$GameLayer.hide()
-		$UI.hide()
 		$GameOverLayer.show()
 
 func game_over():
+	rounds_cleared_ui.text = "Waves Cleared: " + str(wave_manager.rounds_cleared)
 	set_screen(screens.GameOver)
 
 

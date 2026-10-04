@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://d0vn5q3rsr5tc"]
 
 [ext_resource type="Script" uid="uid://cl8lxbl07w3fa" path="res://main/enemy_ships/enemy_ship.gd" id="1_4nxlj"]
-[ext_resource type="Texture2D" uid="uid://yfdrvpdjrlwl" path="res://lexie/purple-ship.png" id="2_dpyji"]
+[ext_resource type="Texture2D" uid="uid://cvo4rrnn8ubvs" path="res://assets/Sprite - rocket2b.png" id="2_oy0q2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vqkdg"]
 radius = 32.01562
 
 [node name="enemy_ship" type="CharacterBody2D" unique_id=1796651604]
+collision_layer = 4
+collision_mask = 13
 motion_mode = 1
 script = ExtResource("1_4nxlj")
 max_acceleration = 100000.0
@@ -14,8 +16,9 @@ max_speed = 1700.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1532421090]
 modulate = Color(0.9141122, 0.72419167, 0, 1)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_dpyji")
+position = Vector2(-3, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("2_oy0q2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=290708062]
 shape = SubResource("CircleShape2D_vqkdg")

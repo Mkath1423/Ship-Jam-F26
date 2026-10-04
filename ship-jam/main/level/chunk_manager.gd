@@ -40,13 +40,11 @@ func _spawn_chunk(pos : Vector2i):
 		chunk.stale = false
 		
 		if chunk.chunk_offset != pos:
-			print("moving chunk ",mod_pos, " to ", pos)
 			chunk.chunk_offset = pos
 			chunk.node.global_position = chunk_dims * Vector2(pos)
 			chunk.node.move_to(chunk_dims * Vector2(pos), pos)
 		
 	else:
-		print("building chunk ",mod_pos, " at ", pos)
 		var chunk = ChunkInfo.new()
 		chunk.node = test_check.instantiate() as Node2D
 		chunk.node.global_position = chunk_dims * Vector2(pos)
@@ -63,7 +61,6 @@ func load_nearby_chunks():
 	if last_player_pos == player_chunk_pos:
 		return
 	
-	print("player moved to ", player_chunk_pos)
 	last_player_pos = player_chunk_pos
 	
 	for x in range(-chunk_load_distance.x, chunk_load_distance.x + 1):

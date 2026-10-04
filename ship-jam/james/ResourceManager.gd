@@ -26,6 +26,7 @@ func attempt_add_energy(energy_to_add : float):
 func attempt_spend_energy(energy_to_spend : float) -> bool:
 	if (playerEnergy >= energy_to_spend):
 		playerEnergy -= energy_to_spend
+		print("J:", playerEnergy)
 		return true
 	else:
 		return false
