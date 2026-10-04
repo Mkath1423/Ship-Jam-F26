@@ -12,10 +12,28 @@
 [ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="7_67ri8"]
 [ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="8_grrlh"]
 [ext_resource type="PackedScene" uid="uid://dy03bil1igvm7" path="res://main/obstacles/asteroid_big.tscn" id="11_5xyti"]
-[ext_resource type="PackedScene" uid="uid://bblfx6md03jbv" path="res://main/UI/UI.tscn" id="11_bsumw"]
 [ext_resource type="PackedScene" uid="uid://db8v8tki32l23" path="res://main/obstacles/asteroid_medium.tscn" id="12_n3o0a"]
 [ext_resource type="PackedScene" uid="uid://o78kybfk8g5h" path="res://main/obstacles/asteroid_small.tscn" id="13_s758e"]
 [ext_resource type="PackedScene" uid="uid://bwipaqlsy2cth" path="res://main/obstacles/satellite.tscn" id="14_4hmqs"]
+[ext_resource type="Texture2D" uid="uid://cvqrwt7peubue" path="res://assets/UI - border.png" id="17_amlcg"]
+[ext_resource type="Script" uid="uid://d0awwmw8t4h1p" path="res://main/UI/speedometer.gd" id="18_ue0mw"]
+[ext_resource type="Texture2D" uid="uid://ctglrm0ho8y6l" path="res://assets/UI - a - bg.png" id="19_vqjab"]
+[ext_resource type="Texture2D" uid="uid://che7egggydy6c" path="res://assets/UI - a - fore.png" id="20_h3axc"]
+[ext_resource type="Texture2D" uid="uid://r17b0gwrdrvc" path="res://assets/UI - a - border.png" id="21_d7rgo"]
+[ext_resource type="Texture2D" uid="uid://cxxys5w48ekah" path="res://assets/UI - b - bg.png" id="22_yjufm"]
+[ext_resource type="Texture2D" uid="uid://ce3utfoioxfya" path="res://assets/UI - b - fore.png" id="23_phifs"]
+[ext_resource type="Texture2D" uid="uid://i4cwlvepcoyb" path="res://assets/UI - b - border.png" id="24_cgvj2"]
+[ext_resource type="Script" uid="uid://b7m64uki8sba3" path="res://main/UI/energy_bar.gd" id="25_t1yuj"]
+[ext_resource type="Texture2D" uid="uid://cahvfot8e1k07" path="res://assets/UI - energy - back.png" id="26_4pcu1"]
+[ext_resource type="Texture2D" uid="uid://dorosai6bnh6s" path="res://assets/Whiteness.png" id="27_7eg6f"]
+[ext_resource type="Texture2D" uid="uid://dh1hducac4rha" path="res://assets/UI - energy - border.png" id="28_rue0h"]
+[ext_resource type="Texture2D" uid="uid://dtpvo282io2au" path="res://assets/UI - energy - sym.png" id="29_c5cfd"]
+[ext_resource type="Script" uid="uid://d3ajw4cuyihjb" path="res://main/UI/health_bar.gd" id="30_v40no"]
+[ext_resource type="Texture2D" uid="uid://c3ehbwvp8gafr" path="res://assets/UI - health- back.png" id="31_omb8t"]
+[ext_resource type="Texture2D" uid="uid://b3n0gsbaga1e7" path="res://assets/UI - health - border.png" id="32_k5bb4"]
+[ext_resource type="Texture2D" uid="uid://dmhm7isxouko0" path="res://assets/UI - health - sym.png" id="33_028el"]
+[ext_resource type="Texture2D" uid="uid://dbjr50ubr1t5r" path="res://assets/UI - pause - back.png" id="34_yyc07"]
+[ext_resource type="Texture2D" uid="uid://fxkjydkksmth" path="res://assets/UI - pause - pause.png" id="35_3le5t"]
 
 [node name="Main2" type="Node2D" unique_id=203743139]
 script = ExtResource("1_bsumw")
@@ -116,8 +134,99 @@ position = Vector2(759, 364)
 [node name="Satellite" parent="GameLayer/world" unique_id=1165367634 instance=ExtResource("14_4hmqs")]
 position = Vector2(825, 197)
 
-[node name="Ui" parent="." unique_id=1415882682 instance=ExtResource("11_bsumw")]
-visible = false
+[node name="UI" type="CanvasLayer" parent="." unique_id=272313975]
+
+[node name="ScalingContainer" type="Node2D" parent="UI" unique_id=993419513]
+scale = Vector2(4.13, 4.03)
+
+[node name="Border" type="Sprite2D" parent="UI/ScalingContainer" unique_id=1797648217]
+position = Vector2(139.5, 80.5)
+texture = ExtResource("17_amlcg")
+
+[node name="Speedometer" type="Node2D" parent="UI/ScalingContainer" unique_id=319360370 node_paths=PackedStringArray("player")]
+position = Vector2(139.5, 80.5)
+script = ExtResource("18_ue0mw")
+player = NodePath("../../../GameLayer/world/player_ship")
+
+[node name="Speedometer_1" type="Sprite2D" parent="UI/ScalingContainer/Speedometer" unique_id=1143413404]
+clip_children = 2
+texture = ExtResource("19_vqjab")
+
+[node name="Dial" type="Sprite2D" parent="UI/ScalingContainer/Speedometer/Speedometer_1" unique_id=569561958]
+position = Vector2(-79.96637, 62.432945)
+rotation = -2.3799324
+scale = Vector2(0.0016336136, 0.4185988)
+texture = ExtResource("27_7eg6f")
+offset = Vector2(-2.8049316, -27.570328)
+
+[node name="Speedometer_2" type="Sprite2D" parent="UI/ScalingContainer/Speedometer" unique_id=1620391746]
+texture = ExtResource("20_h3axc")
+
+[node name="Speedometer_3" type="Sprite2D" parent="UI/ScalingContainer/Speedometer" unique_id=160241279]
+texture = ExtResource("21_d7rgo")
+
+[node name="Accelerometer" type="Node2D" parent="UI/ScalingContainer" unique_id=77890013]
+position = Vector2(139.5, 80.5)
+
+[node name="Accelerometer_1" type="Sprite2D" parent="UI/ScalingContainer/Accelerometer" unique_id=1715861008]
+texture = ExtResource("22_yjufm")
+
+[node name="Accelerometer_2" type="Sprite2D" parent="UI/ScalingContainer/Accelerometer" unique_id=1059376658]
+texture = ExtResource("23_phifs")
+
+[node name="Accelerometer_3" type="Sprite2D" parent="UI/ScalingContainer/Accelerometer" unique_id=1874133961]
+texture = ExtResource("24_cgvj2")
+
+[node name="EnergyBar" type="Node2D" parent="UI/ScalingContainer" unique_id=1044980450]
+position = Vector2(139.5, 80.5)
+script = ExtResource("25_t1yuj")
+resourceManager = ExtResource("6_grrlh")
+
+[node name="EnergyBar_1" type="Sprite2D" parent="UI/ScalingContainer/EnergyBar" unique_id=1308075912]
+clip_children = 1
+texture = ExtResource("26_4pcu1")
+
+[node name="BarColourFill" type="Sprite2D" parent="UI/ScalingContainer/EnergyBar/EnergyBar_1" unique_id=1093666523]
+modulate = Color(0, 0.38039216, 1, 1)
+position = Vector2(-31.267548, 56.22458)
+scale = Vector2(0.5111043, 0.21393931)
+texture = ExtResource("27_7eg6f")
+
+[node name="EnergyBar_2" type="Sprite2D" parent="UI/ScalingContainer/EnergyBar" unique_id=473666211]
+texture = ExtResource("28_rue0h")
+
+[node name="EnergyBar_3" type="Sprite2D" parent="UI/ScalingContainer/EnergyBar" unique_id=1995087454]
+texture = ExtResource("29_c5cfd")
+
+[node name="HealthBar" type="Node2D" parent="UI/ScalingContainer" unique_id=1807470154]
+position = Vector2(139.5, 80.5)
+script = ExtResource("30_v40no")
+resourceManager = ExtResource("6_grrlh")
+
+[node name="HealthBar_1" type="Sprite2D" parent="UI/ScalingContainer/HealthBar" unique_id=1994517073]
+clip_children = 1
+texture = ExtResource("31_omb8t")
+
+[node name="BarColourFill" type="Sprite2D" parent="UI/ScalingContainer/HealthBar/HealthBar_1" unique_id=625472674]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(-32.720352, 71.85732)
+scale = Vector2(0.544, 0.18948783)
+texture = ExtResource("27_7eg6f")
+
+[node name="HealthBar_2" type="Sprite2D" parent="UI/ScalingContainer/HealthBar" unique_id=1822394428]
+texture = ExtResource("32_k5bb4")
+
+[node name="HealthBar_3" type="Sprite2D" parent="UI/ScalingContainer/HealthBar" unique_id=1827537705]
+texture = ExtResource("33_028el")
+
+[node name="Pause" type="Node2D" parent="UI/ScalingContainer" unique_id=1452430850]
+position = Vector2(139.5, 80.5)
+
+[node name="Pause_1" type="Sprite2D" parent="UI/ScalingContainer/Pause" unique_id=120934722]
+texture = ExtResource("34_yyc07")
+
+[node name="Pause_2" type="Sprite2D" parent="UI/ScalingContainer/Pause" unique_id=1314560097]
+texture = ExtResource("35_3le5t")
 
 [node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=540281078]
 visible = false

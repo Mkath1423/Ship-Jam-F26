@@ -18,19 +18,19 @@ func set_screen(screen : screens):
 		$GameStartLayer.show()
 		$BackgroundLayer.hide()
 		$GameLayer.hide()
-		$Ui.hide()
+		$UI.hide()
 		$GameOverLayer.hide()
 	elif screen == screens.Game:
 		$GameStartLayer.hide()
 		$BackgroundLayer.show()
 		$GameLayer.show()
-		$Ui.show()
+		$UI.show()
 		$GameOverLayer.hide()
 	elif screen == screens.GameOver:
 		$GameStartLayer.hide()
 		$BackgroundLayer.hide()
 		$GameLayer.hide()
-		$Ui.hide()
+		$UI.hide()
 		$GameOverLayer.show()
 
 func game_over():

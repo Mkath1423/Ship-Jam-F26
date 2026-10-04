@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://3kwvj50ewo7y" path="res://main/UI/ui.gd" id="1_gr7po"]
 [ext_resource type="Texture2D" uid="uid://cvqrwt7peubue" path="res://assets/UI - border.png" id="2_gr7po"]
+[ext_resource type="Script" uid="uid://d0awwmw8t4h1p" path="res://main/UI/speedometer.gd" id="3_pfkcs"]
 [ext_resource type="Texture2D" uid="uid://ctglrm0ho8y6l" path="res://assets/UI - a - bg.png" id="3_us4et"]
 [ext_resource type="Texture2D" uid="uid://che7egggydy6c" path="res://assets/UI - a - fore.png" id="4_hj0xa"]
 [ext_resource type="Texture2D" uid="uid://r17b0gwrdrvc" path="res://assets/UI - a - border.png" id="5_rojxn"]
 [ext_resource type="Texture2D" uid="uid://cxxys5w48ekah" path="res://assets/UI - b - bg.png" id="6_44vjo"]
+[ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="6_qoftm"]
 [ext_resource type="Texture2D" uid="uid://ce3utfoioxfya" path="res://assets/UI - b - fore.png" id="7_r533m"]
 [ext_resource type="Texture2D" uid="uid://i4cwlvepcoyb" path="res://assets/UI - b - border.png" id="8_m8m5x"]
 [ext_resource type="Texture2D" uid="uid://cahvfot8e1k07" path="res://assets/UI - energy - back.png" id="9_c46b8"]
@@ -33,9 +35,18 @@ texture = ExtResource("2_gr7po")
 
 [node name="Speedometer" type="Node2D" parent="ScalingContainer" unique_id=1841445826]
 position = Vector2(139.5, 80.5)
+script = ExtResource("3_pfkcs")
 
 [node name="Speedometer_1" type="Sprite2D" parent="ScalingContainer/Speedometer" unique_id=2131264958]
+clip_children = 2
 texture = ExtResource("3_us4et")
+
+[node name="Dial" type="Sprite2D" parent="ScalingContainer/Speedometer/Speedometer_1" unique_id=813142048]
+position = Vector2(-80.15234, 62.493835)
+rotation = -2.3799324
+scale = Vector2(0.0042916127, 0.17039245)
+texture = ExtResource("6_qoftm")
+offset = Vector2(-0.00024414063, -64.01984)
 
 [node name="Speedometer_2" type="Sprite2D" parent="ScalingContainer/Speedometer" unique_id=1861541075]
 texture = ExtResource("4_hj0xa")
