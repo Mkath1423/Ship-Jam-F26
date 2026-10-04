@@ -34,11 +34,13 @@ func set_screen(screen : screens):
 		$GameOverLayer.show()
 
 func game_over():
+	$GameLayer/world.end.emit()
 	set_screen(screens.GameOver)
 
 
 func _on_start_game_button_pressed() -> void:
 	set_screen(screens.Game)
+	$GameLayer/world.restart.emit()
 
 
 func _on_go_to_menu_button_pressed() -> void:

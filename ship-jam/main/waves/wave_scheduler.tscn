@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://de4gktyjse2jh"]
+
+[ext_resource type="Script" uid="uid://cviyhb4smmtna" path="res://main/waves/wave_manager.gd" id="1_gnrve"]
+
+[node name="WaveScheduler" type="Node" unique_id=1750741460]
+script = ExtResource("1_gnrve")
+
+[node name="RoundTimer" type="Timer" parent="." unique_id=1045491517]
+
+[node name="WaveTimer" type="Timer" parent="." unique_id=2022302907]
+wait_time = 10.0

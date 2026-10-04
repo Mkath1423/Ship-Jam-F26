@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cba6a2xvhuisy"]
 
-[ext_resource type="Script" uid="uid://ho5ng6ftmuib" path="res://lexie/level/chunk.gd" id="1_q450v"]
+[ext_resource type="Script" uid="uid://ho5ng6ftmuib" path="res://main/level/chunk.gd" id="1_q450v"]
 [ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="2_o1xvr"]
 [ext_resource type="Script" uid="uid://ktdfb8idap2" path="res://lexie/rigid_body_2d.gd" id="3_e63do"]
 

@@ -8,10 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://ciq6f5ik5sqji" path="res://assets/Background (draft).png" id="3_5xyti"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_c651c"]
 [ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="5_3wy1v"]
+[ext_resource type="PackedScene" uid="uid://b87nur3avebrf" path="res://main/level/chunk_manager.tscn" id="5_ue0mw"]
+[ext_resource type="Script" uid="uid://ss7jlsr73ex4" path="res://main/world.gd" id="5_vqjab"]
 [ext_resource type="Resource" uid="uid://c1k77bq5y0wvi" path="res://james/ResourceManager.tres" id="6_grrlh"]
 [ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="7_67ri8"]
 [ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="8_grrlh"]
 [ext_resource type="PackedScene" uid="uid://dy03bil1igvm7" path="res://main/obstacles/asteroid_big.tscn" id="11_5xyti"]
+[ext_resource type="PackedScene" uid="uid://de4gktyjse2jh" path="res://main/waves/wave_scheduler.tscn" id="12_h3axc"]
 [ext_resource type="PackedScene" uid="uid://db8v8tki32l23" path="res://main/obstacles/asteroid_medium.tscn" id="12_n3o0a"]
 [ext_resource type="PackedScene" uid="uid://o78kybfk8g5h" path="res://main/obstacles/asteroid_small.tscn" id="13_s758e"]
 [ext_resource type="PackedScene" uid="uid://bwipaqlsy2cth" path="res://main/obstacles/satellite.tscn" id="14_4hmqs"]
@@ -76,6 +79,10 @@ visible = false
 follow_viewport_enabled = true
 
 [node name="world" type="Node2D" parent="GameLayer" unique_id=647259127]
+script = ExtResource("5_vqjab")
+
+[node name="ChunkManager" parent="GameLayer/world" unique_id=1101586204 node_paths=PackedStringArray("player") instance=ExtResource("5_ue0mw")]
+player = NodePath("../player_ship")
 
 [node name="player_ship" parent="GameLayer/world" unique_id=1037649546 node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_pjrb6")]
 position = Vector2(539, 326)
@@ -84,7 +91,6 @@ nudge_acceleration = 300.0
 max_speed = 1000.0
 max_speed_decay = 0.001
 break_speed_decay = 0.95
-resourceManager = ExtResource("6_grrlh")
 bullet_manager = NodePath("../BulletManager")
 
 [node name="Camera2D" type="Camera2D" parent="GameLayer/world/player_ship" unique_id=1202193931]
@@ -111,6 +117,8 @@ script = ExtResource("2_kfbq2")
 bullet = ExtResource("5_3wy1v")
 railgun_beam = ExtResource("2_0i4oc")
 world = NodePath("..")
+
+[node name="WaveScheduler" parent="GameLayer/world" unique_id=1750741460 instance=ExtResource("12_h3axc")]
 
 [node name="EnemyController" type="Node" parent="GameLayer/world" unique_id=504619865 node_paths=PackedStringArray("world", "player")]
 script = ExtResource("7_67ri8")
@@ -257,4 +265,7 @@ offset_bottom = 15.0
 text = "Go to menu"
 
 [connection signal="pressed" from="GameStartLayer/StartButton/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="end" from="GameLayer/world" to="GameLayer/world/EnemyController" method="_on_main_end"]
+[connection signal="end" from="GameLayer/world" to="GameLayer/world/WaveScheduler" method="_on_main_end"]
+[connection signal="restart" from="GameLayer/world" to="GameLayer/world/WaveScheduler" method="_on_main_restart"]
 [connection signal="pressed" from="GameOverLayer/Node2D/GoToMenuButton" to="." method="_on_go_to_menu_button_pressed"]

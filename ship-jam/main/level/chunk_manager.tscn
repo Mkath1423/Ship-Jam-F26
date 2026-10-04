@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b87nur3avebrf"]
 
-[ext_resource type="Script" uid="uid://bfrafaw0h17rm" path="res://lexie/level/chunk_manager.gd" id="1_icjyw"]
-[ext_resource type="PackedScene" uid="uid://cba6a2xvhuisy" path="res://lexie/level/chunks/test_chunk_1000.tscn" id="2_4k4mo"]
+[ext_resource type="Script" uid="uid://bfrafaw0h17rm" path="res://main/level/chunk_manager.gd" id="1_icjyw"]
+[ext_resource type="PackedScene" uid="uid://cba6a2xvhuisy" path="res://main/level/chunks/test_chunk_1000.tscn" id="2_4k4mo"]
 
 [node name="ChunkManager" type="Node2D" unique_id=1101586204 node_paths=PackedStringArray("player")]
 physics_interpolation_mode = 2

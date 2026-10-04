@@ -103,11 +103,8 @@ func _awaken_flock(spawn_points : Array[Vector2], spawn_func : Callable):
 	flock.update_targets = -1
 	return flock
 
-func _ready() -> void:
-	pass
 
-
-func _on_main_restart() -> void:
+func _on_main_end() -> void:
 	for flock in live_flocks:
 		for ship in flock.ships:
 			_kill_one(ship)

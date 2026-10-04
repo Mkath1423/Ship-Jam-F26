@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cwmts2y63knh"]
 
 [ext_resource type="Texture2D" uid="uid://fei1tbayus41" path="res://lexie/space-bg.jpg" id="1_cq8bq"]
-[ext_resource type="Script" uid="uid://ss7jlsr73ex4" path="res://lexie/world.gd" id="1_mplub"]
+[ext_resource type="Script" uid="uid://ss7jlsr73ex4" path="res://main/world.gd" id="1_mplub"]
 [ext_resource type="PackedScene" uid="uid://dub1888olcx2h" path="res://main/player_ship/player_ship.tscn" id="3_1ror0"]
 [ext_resource type="Script" uid="uid://bdiyshp1yxmuy" path="res://main/player_ship/camera_follow.gd" id="4_40pup"]
 [ext_resource type="Script" uid="uid://5cp4q0tqq4ef" path="res://main/bullets/bullet_manager.gd" id="6_mplub"]
 [ext_resource type="PackedScene" uid="uid://chaq7wuhdxn4i" path="res://james/LaserBullet.tscn" id="7_hgeq3"]
-[ext_resource type="Script" uid="uid://cviyhb4smmtna" path="res://lexie/waves/wave_manager.gd" id="8_b7efe"]
+[ext_resource type="PackedScene" uid="uid://de4gktyjse2jh" path="res://main/waves/wave_scheduler.tscn" id="7_mplub"]
 [ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="9_hgeq3"]
 [ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="10_jmjeg"]
 
@@ -61,13 +61,7 @@ script = ExtResource("6_mplub")
 bullet = ExtResource("7_hgeq3")
 world = NodePath("../world")
 
-[node name="WaveScheduler" type="Node" parent="CanvasLayer2" unique_id=1230578872]
-script = ExtResource("8_b7efe")
-
-[node name="RoundTimer" type="Timer" parent="CanvasLayer2/WaveScheduler" unique_id=1706866175]
-
-[node name="WaveTimer" type="Timer" parent="CanvasLayer2/WaveScheduler" unique_id=536958172]
-wait_time = 10.0
+[node name="WaveScheduler" parent="CanvasLayer2" unique_id=1750741460 instance=ExtResource("7_mplub")]
 
 [node name="EnemyController" type="Node" parent="CanvasLayer2" unique_id=716559546 node_paths=PackedStringArray("world", "player")]
 script = ExtResource("9_hgeq3")
@@ -80,6 +74,4 @@ alignment_factor = 3.0
 cohesion_factor = 1.0
 metadata/_custom_type_script = "uid://gg7s7t6k2dtm"
 
-[connection signal="end" from="." to="CanvasLayer2/WaveScheduler" method="_on_main_end"]
 [connection signal="end" from="." to="CanvasLayer2/EnemyController" method="_on_main_restart"]
-[connection signal="restart" from="." to="CanvasLayer2/WaveScheduler" method="_on_main_restart"]
