@@ -146,6 +146,7 @@ follow_viewport_enabled = true
 enemy_controller = NodePath("../EnemyController")
 chunk_manager = NodePath("../world/ChunkManager")
 player = NodePath("../world/player_ship")
+resourceManager = ExtResource("6_grrlh")
 banner = NodePath("../../UI/Control/MarginContainer/Banner")
 objective = NodePath("../../UI/Control/MarginContainer2/Objective")
 
@@ -183,7 +184,7 @@ break_speed_decay = 0.95
 bullet_manager = NodePath("../BulletManager")
 
 [node name="Camera2D" type="Camera2D" parent="GameLayer/world/player_ship" unique_id=1202193931]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.4, 0.4)
 process_callback = 0
 limit_enabled = false
 position_smoothing_enabled = true

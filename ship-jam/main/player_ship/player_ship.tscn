@@ -33,6 +33,7 @@ resourceManager = ExtResource("2_cfcxt")
 z_index = 1
 scale = Vector2(4, 4)
 texture = ExtResource("3_cfcxt")
+offset = Vector2(-1, 0)
 
 [node name="bullet_spawn_point" type="Marker2D" parent="Sprite2D" unique_id=1649917596]
 z_index = -1
