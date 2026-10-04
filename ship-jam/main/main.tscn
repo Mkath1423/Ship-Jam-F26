@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cdqnt8v6memap" path="res://assets/UI - border base.png" id="19_yjufm"]
 [ext_resource type="Texture2D" uid="uid://che7egggydy6c" path="res://assets/UI - a - fore.png" id="20_h3axc"]
 [ext_resource type="Texture2D" uid="uid://r17b0gwrdrvc" path="res://assets/UI - a - border.png" id="21_d7rgo"]
+[ext_resource type="Texture2D" uid="uid://dkb061ekkvjpj" path="res://assets/UI - dial.png" id="21_h3axc"]
 [ext_resource type="Script" uid="uid://ctdcob0eijeys" path="res://main/accelerometer.gd" id="22_amlcg"]
 [ext_resource type="Texture2D" uid="uid://cxxys5w48ekah" path="res://assets/UI - b - bg.png" id="22_yjufm"]
 [ext_resource type="Texture2D" uid="uid://ce3utfoioxfya" path="res://assets/UI - b - fore.png" id="23_phifs"]
@@ -155,18 +156,17 @@ player = NodePath("../../../GameLayer/world/player_ship")
 clip_children = 2
 texture = ExtResource("19_vqjab")
 
-[node name="Dial" type="Sprite2D" parent="UI/ScalingContainer/Speedometer/Speedometer_1" unique_id=569561958]
-position = Vector2(-79.96637, 62.432945)
-rotation = -2.3799324
-scale = Vector2(0.0016336136, 0.4185988)
-texture = ExtResource("27_7eg6f")
-offset = Vector2(-2.8049316, -27.570328)
-
 [node name="Speedometer_2" type="Sprite2D" parent="UI/ScalingContainer/Speedometer" unique_id=1620391746]
 texture = ExtResource("20_h3axc")
 
 [node name="Speedometer_3" type="Sprite2D" parent="UI/ScalingContainer/Speedometer" unique_id=160241279]
 texture = ExtResource("21_d7rgo")
+
+[node name="Dial" type="Sprite2D" parent="UI/ScalingContainer/Speedometer" unique_id=839041351]
+position = Vector2(-79.82635, 68.8593)
+rotation = -2.3799324
+texture = ExtResource("21_h3axc")
+offset = Vector2(-0.054336548, -8.449875)
 
 [node name="Accelerometer" type="Node2D" parent="UI/ScalingContainer" unique_id=77890013 node_paths=PackedStringArray("player")]
 position = Vector2(139.5, 80)
@@ -177,18 +177,17 @@ player = NodePath("../../../GameLayer/world/player_ship")
 clip_children = 2
 texture = ExtResource("22_yjufm")
 
-[node name="Dial" type="Sprite2D" parent="UI/ScalingContainer/Accelerometer/Accelerometer_1" unique_id=552672377]
-position = Vector2(78.90194, 62.428036)
-rotation = -2.3799324
-scale = Vector2(0.0016336136, 0.4185988)
-texture = ExtResource("27_7eg6f")
-offset = Vector2(-2.8049316, -27.570328)
-
 [node name="Accelerometer_2" type="Sprite2D" parent="UI/ScalingContainer/Accelerometer" unique_id=1059376658]
 texture = ExtResource("23_phifs")
 
 [node name="Accelerometer_3" type="Sprite2D" parent="UI/ScalingContainer/Accelerometer" unique_id=1874133961]
 texture = ExtResource("24_cgvj2")
+
+[node name="Dial" type="Sprite2D" parent="UI/ScalingContainer/Accelerometer" unique_id=1286716012]
+position = Vector2(78.90193, 68.88337)
+rotation = -2.3799324
+texture = ExtResource("21_h3axc")
+offset = Vector2(-0.054336548, -8.449875)
 
 [node name="EnergyBar" type="Node2D" parent="UI/ScalingContainer" unique_id=1044980450]
 position = Vector2(139.5, 83.72)

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://che7egggydy6c" path="res://assets/UI - a - fore.png" id="4_hj0xa"]
 [ext_resource type="Texture2D" uid="uid://r17b0gwrdrvc" path="res://assets/UI - a - border.png" id="5_rojxn"]
 [ext_resource type="Texture2D" uid="uid://cxxys5w48ekah" path="res://assets/UI - b - bg.png" id="6_44vjo"]
-[ext_resource type="Texture2D" uid="uid://cc71mev02vmrp" path="res://icon.svg" id="6_qoftm"]
+[ext_resource type="Texture2D" uid="uid://dkb061ekkvjpj" path="res://assets/UI - dial.png" id="7_pfkcs"]
 [ext_resource type="Texture2D" uid="uid://ce3utfoioxfya" path="res://assets/UI - b - fore.png" id="7_r533m"]
 [ext_resource type="Texture2D" uid="uid://i4cwlvepcoyb" path="res://assets/UI - b - border.png" id="8_m8m5x"]
 [ext_resource type="Texture2D" uid="uid://cahvfot8e1k07" path="res://assets/UI - energy - back.png" id="9_c46b8"]
@@ -38,21 +38,19 @@ position = Vector2(139.5, 80.5)
 script = ExtResource("3_pfkcs")
 
 [node name="Speedometer_1" type="Sprite2D" parent="ScalingContainer/Speedometer" unique_id=2131264958]
-clip_children = 2
 texture = ExtResource("3_us4et")
-
-[node name="Dial" type="Sprite2D" parent="ScalingContainer/Speedometer/Speedometer_1" unique_id=813142048]
-position = Vector2(-80.15234, 62.493835)
-rotation = -2.3799324
-scale = Vector2(0.0042916127, 0.17039245)
-texture = ExtResource("6_qoftm")
-offset = Vector2(-0.00024414063, -64.01984)
 
 [node name="Speedometer_2" type="Sprite2D" parent="ScalingContainer/Speedometer" unique_id=1861541075]
 texture = ExtResource("4_hj0xa")
 
 [node name="Speedometer_3" type="Sprite2D" parent="ScalingContainer/Speedometer" unique_id=1578121546]
 texture = ExtResource("5_rojxn")
+
+[node name="Dial" type="Sprite2D" parent="ScalingContainer/Speedometer" unique_id=813142048]
+position = Vector2(-79.82635, 68.8593)
+rotation = -2.3799324
+texture = ExtResource("7_pfkcs")
+offset = Vector2(-0.054336548, -8.449875)
 
 [node name="Accelerometer" type="Node2D" parent="ScalingContainer" unique_id=1398748555]
 position = Vector2(139.5, 80.5)
