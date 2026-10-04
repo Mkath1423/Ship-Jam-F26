@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://6kebfld0lrdi" path="res://main/player_ship/player_ship.gd" id="1_cplq0"]
 [ext_resource type="Resource" uid="uid://c1k77bq5y0wvi" path="res://james/ResourceManager.tres" id="2_cfcxt"]
 [ext_resource type="Texture2D" uid="uid://cvo4rrnn8ubvs" path="res://assets/Sprite - rocket2b.png" id="3_cfcxt"]
+[ext_resource type="AudioStream" uid="uid://dp8cb0wbq7vhg" path="res://assets/ShortLaserShot.wav" id="4_t04cl"]
 
 [sub_resource type="Gradient" id="Gradient_cfcxt"]
 offsets = PackedFloat32Array(0, 0.7)
@@ -108,6 +109,15 @@ collision_mask = 5
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox" unique_id=997891879]
 shape = SubResource("CircleShape2D_8oc6l")
+
+[node name="LaserShot1" type="AudioStreamPlayer" parent="." unique_id=350168176]
+stream = ExtResource("4_t04cl")
+
+[node name="LaserShot2" type="AudioStreamPlayer" parent="." unique_id=1000458353]
+stream = ExtResource("4_t04cl")
+
+[node name="LaserShot3" type="AudioStreamPlayer" parent="." unique_id=1206878692]
+stream = ExtResource("4_t04cl")
 
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
 [connection signal="timeout" from="NoEnergyGainTimer" to="." method="_on_no_energy_gain_timer_timeout"]

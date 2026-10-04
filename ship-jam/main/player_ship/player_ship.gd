@@ -115,10 +115,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("shoot") and not gun_on_cooldown:
 		gun_on_cooldown = true
 		bullet_manager.spawn_bullet(teams.team.Player, bullet_spawn_point.global_position, 3000, $Sprite2D.rotation)
+		$LaserShot1.play()
 		await get_tree().create_timer(0.05).timeout
 		bullet_manager.spawn_bullet(teams.team.Player, bullet_spawn_point.global_position, 3000, $Sprite2D.rotation+0.01*PI)
+		$LaserShot1.play()
 		await get_tree().create_timer(0.05).timeout
 		bullet_manager.spawn_bullet(teams.team.Player, bullet_spawn_point.global_position, 3000, $Sprite2D.rotation+0.01*PI)
+		$LaserShot1.play()
 		$ShotTimer.start()
 	
 	for i in get_slide_collision_count():
