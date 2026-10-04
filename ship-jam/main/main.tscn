@@ -81,11 +81,12 @@ enemy_controller = NodePath("../EnemyController")
 banner = NodePath("../../UI/Control/MarginContainer/Banner")
 objective = NodePath("../../UI/Control/MarginContainer2/Objective")
 
-[node name="EnemyController" type="Node" parent="GameLayer" unique_id=504619865 node_paths=PackedStringArray("world", "player")]
+[node name="EnemyController" type="Node" parent="GameLayer" unique_id=504619865 node_paths=PackedStringArray("world", "player", "chunk_manager")]
 script = ExtResource("7_67ri8")
 basic_enemy_scene = ExtResource("8_grrlh")
 world = NodePath("../world")
 player = NodePath("../world/player_ship")
+chunk_manager = NodePath("../world/ChunkManager")
 target_factor = 5.0
 seperation_factor = 10.0
 alignment_factor = 3.0

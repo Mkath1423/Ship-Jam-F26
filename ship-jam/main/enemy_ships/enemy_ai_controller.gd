@@ -5,6 +5,7 @@ signal player_killed_enemy(type : BehaviorType)
 @export var basic_enemy_scene : PackedScene
 @export var world : Node2D
 @export var player : Node2D
+@export var chunk_manager : ChunkManager
 
 @export var target_factor : float
 @export var seperation_factor : float
@@ -12,7 +13,6 @@ signal player_killed_enemy(type : BehaviorType)
 @export var cohesion_factor : float
 
 @export var update_targeting_interval : float = 0.1
-
 enum BehaviorType { CHASER, GUNNER, BLOCKER, TURRET };
 enum FlockState { IDLE, AGGRESSIVE, FLEE };
 
@@ -221,6 +221,10 @@ func _avoid_obstacles(info : EnemyInfo, delta : float):
 		
 
 func _move_ship(info : EnemyInfo, delta : float):
+	
+	var true_pos = chunk_manager._get_updated_world_position(info.node.global_position)
+	info.node.global_position = true_pos 
+	
 	_avoid_obstacles(info, delta)
 	var desired_velocity = info.target_velocity
 	
