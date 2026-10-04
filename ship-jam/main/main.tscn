@@ -150,12 +150,13 @@ resourceManager = ExtResource("6_grrlh")
 banner = NodePath("../../UI/Control/MarginContainer/Banner")
 objective = NodePath("../../UI/Control/MarginContainer2/Objective")
 
-[node name="EnemyController" type="Node" parent="GameLayer" unique_id=504619865 node_paths=PackedStringArray("world", "player", "chunk_manager")]
+[node name="EnemyController" type="Node" parent="GameLayer" unique_id=504619865 node_paths=PackedStringArray("world", "player", "chunk_manager", "alert_manager")]
 script = ExtResource("7_67ri8")
 basic_enemy_scene = ExtResource("8_grrlh")
 world = NodePath("../world")
 player = NodePath("../world/player_ship")
 chunk_manager = NodePath("../world/ChunkManager")
+alert_manager = NodePath("../../UI/alert_manager")
 target_factor = 5.0
 seperation_factor = 10.0
 alignment_factor = 3.0
@@ -331,9 +332,12 @@ texture = ExtResource("34_yyc07")
 [node name="Pause_2" type="Sprite2D" parent="UI/ScalingContainer/Pause" unique_id=1314560097]
 texture = ExtResource("35_3le5t")
 
-[node name="alert_manager" type="Node2D" parent="UI" unique_id=46620368]
+[node name="alert_manager" type="Node2D" parent="UI" unique_id=46620368 node_paths=PackedStringArray("player", "camera")]
 physics_interpolation_mode = 2
+position = Vector2(576, 324)
 script = ExtResource("40_cgvj2")
+player = NodePath("../../GameLayer/world/player_ship")
+camera = NodePath("../../GameLayer/world/player_ship/Camera2D")
 
 [node name="Control" type="Control" parent="UI" unique_id=942399114]
 layout_mode = 3
