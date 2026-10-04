@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://47jbhd5ealro"]
+
+[ext_resource type="Script" uid="uid://ho5ng6ftmuib" path="res://main/level/chunk.gd" id="1_52ta4"]
+[ext_resource type="PackedScene" uid="uid://dy03bil1igvm7" path="res://main/obstacles/asteroid_big.tscn" id="1_ues0g"]
+[ext_resource type="PackedScene" uid="uid://db8v8tki32l23" path="res://main/obstacles/asteroid_medium.tscn" id="2_52ta4"]
+[ext_resource type="PackedScene" uid="uid://o78kybfk8g5h" path="res://main/obstacles/asteroid_small.tscn" id="3_vm602"]
+[ext_resource type="PackedScene" uid="uid://bwipaqlsy2cth" path="res://main/obstacles/satellite.tscn" id="4_1udax"]
+
+[node name="Chunk1" type="Node2D" unique_id=281626444]
+script = ExtResource("1_52ta4")
+
+[node name="AsteroidBig" parent="." unique_id=734619674 instance=ExtResource("1_ues0g")]
+position = Vector2(143, 513)
+
+[node name="AsteroidBig2" parent="." unique_id=475702098 instance=ExtResource("1_ues0g")]
+position = Vector2(258, 340)
+
+[node name="AsteroidBig3" parent="." unique_id=850116054 instance=ExtResource("1_ues0g")]
+position = Vector2(437, 64)
+
+[node name="AsteroidBig4" parent="." unique_id=899815316 instance=ExtResource("1_ues0g")]
+position = Vector2(167, 164)
+
+[node name="AsteroidMedium" parent="." unique_id=448815807 instance=ExtResource("2_52ta4")]
+position = Vector2(115, 444)
+
+[node name="AsteroidSmall" parent="." unique_id=1827357198 instance=ExtResource("3_vm602")]
+position = Vector2(83, 496)
+
+[node name="Satellite" parent="." unique_id=1165367634 instance=ExtResource("4_1udax")]
+position = Vector2(965, 448)
+rotation = 1.0262332
+
+[node name="AsteroidSmall2" parent="." unique_id=22670900 instance=ExtResource("3_vm602")]
+position = Vector2(873, 55)
+
+[node name="AsteroidMedium2" parent="." unique_id=978095753 instance=ExtResource("2_52ta4")]
+position = Vector2(121, 118)
+
+[node name="AsteroidSmall3" parent="." unique_id=992967083 instance=ExtResource("3_vm602")]
+position = Vector2(349, 372)

@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://c1k77bq5y0wvi" path="res://james/ResourceManager.tres" id="6_grrlh"]
 [ext_resource type="Script" uid="uid://gg7s7t6k2dtm" path="res://main/enemy_ships/enemy_ai_controller.gd" id="7_67ri8"]
 [ext_resource type="PackedScene" uid="uid://d0vn5q3rsr5tc" path="res://main/enemy_ships/enemy_ship.tscn" id="8_grrlh"]
+[ext_resource type="PackedScene" uid="uid://47jbhd5ealro" path="res://main/level/chunks/chunk_1.tscn" id="9_phifs"]
 [ext_resource type="PackedScene" uid="uid://dy03bil1igvm7" path="res://main/obstacles/asteroid_big.tscn" id="11_5xyti"]
 [ext_resource type="PackedScene" uid="uid://de4gktyjse2jh" path="res://main/waves/wave_scheduler.tscn" id="12_h3axc"]
 [ext_resource type="PackedScene" uid="uid://db8v8tki32l23" path="res://main/obstacles/asteroid_medium.tscn" id="12_n3o0a"]
@@ -98,6 +99,7 @@ resourceManager = ExtResource("6_grrlh")
 
 [node name="ChunkManager" parent="GameLayer/world" unique_id=1101586204 node_paths=PackedStringArray("player") instance=ExtResource("5_ue0mw")]
 player = NodePath("../player_ship")
+chunk_1 = ExtResource("9_phifs")
 
 [node name="player_ship" parent="GameLayer/world" unique_id=1037649546 node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_pjrb6")]
 position = Vector2(539, 326)

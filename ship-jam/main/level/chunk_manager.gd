@@ -3,6 +3,8 @@ extends Node2D
 @export var player : Node2D 
 @export var test_check : PackedScene
 
+@export var chunk_1 : PackedScene
+
 @export var chunk_dims : Vector2 = Vector2(100, 100)
 @export var chunk_load_distance : Vector2i = Vector2i(5, 5)
 @export var world_dimentions : Vector2i = Vector2i(6, 6)
@@ -46,7 +48,7 @@ func _spawn_chunk(pos : Vector2i):
 		
 	else:
 		var chunk = ChunkInfo.new()
-		chunk.node = test_check.instantiate() as Node2D
+		chunk.node = chunk_1.instantiate() as Node2D
 		chunk.node.global_position = chunk_dims * Vector2(pos)
 		chunk.chunk_offset = pos
 		add_child(chunk.node)
