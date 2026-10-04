@@ -6,6 +6,7 @@ class_name PlayerShip extends CharacterBody2D
 @export var max_speed : float = -1
 @export var max_speed_decay : float = 0.5
 var prev_velocity : Vector2
+var acceleration : Vector2
 
 @export var break_speed_decay : float = 0.5
 
@@ -71,7 +72,7 @@ func _physics_process(delta: float) -> void:
 		# TODO: Adapt this to be slowdown, or whatever else it needs to be
 		velocity = Vector2(0, 0)
 	
-	var acceleration = (velocity - prev_velocity) * delta
+	acceleration = (velocity - prev_velocity) * delta
 	energy_gain_rate = abs(velocity.angle_to(acceleration)) * acceleration.length() * energy_gain_factor
 	if energy_gain_enabled:
 		resourceManager.attempt_add_energy(energy_gain_rate)
